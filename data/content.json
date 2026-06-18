@@ -1,0 +1,22 @@
+{
+  "site": {
+    "tagline": "Portfolio 2026"
+  },
+  "hero": {
+    "taglineHighlight": "Control-M",
+    "freelanceNote": "Open to Control-M, production support, automation, and AI operations opportunities.",
+    "availableLabel": "Available for opportunities",
+    "pills": ["Control-M SME", "L3 Production Support", "Agentic AI", "Automation"],
+    "specialistStat": { "value": "Control-M + AI", "label": "Specialist" }
+  },
+  "interstitial": {
+    "availabilityLabel": "Availability",
+    "basedInLabel": "Based in",
+    "statLabels": ["Years\nexperience", "Enterprise\nroles", "AI automation\nprojects"]
+  },
+  "footer": {
+    "eyebrow": "Available for enterprise support and automation",
+    "ctaLines": ["Keeping critical", "workloads resilient"],
+    "ctaAccent": "trusted."
+  }
+}

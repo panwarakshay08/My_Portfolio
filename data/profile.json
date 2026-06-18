@@ -1,0 +1,138 @@
+{
+  "name": {
+    "first": "Akshay",
+    "last": "Kumar",
+    "full": "Akshay Kumar"
+  },
+  "email": "panwarakshay08@gmail.com",
+  "phone": "9719357960",
+  "tagline": "Full Stack Engineer | React.js | Node.js | TypeScript | Microservices | REST APIs",
+  "description": "Full Stack Engineer with 5+ years experience building high-performance frontends with React/Next.js and production backends with Node.js and Express.",
+  "roles": {
+    "short": "Full Stack Engineer",
+    "detailed": "Full Stack Engineer | React.js | Node.js | TypeScript | Microservices"
+  },
+  "location": {
+    "based": "Pune, India",
+    "availability": "Open to Remote / Relocate"
+  },
+  "available": true,
+  "bio": "Full Stack Engineer with 5+ years of experience and strong frontend expertise in building intuitive, high-performance user interfaces using React.js, Next.js, and TypeScript, combined with solid backend experience in designing RESTful APIs, microservices, and scalable systems using Node.js and Express.js. Proven track record of delivering end-to-end features — from responsive, accessible UIs to production-grade backends with database optimization — in fast-paced Agile/Scrum environments across enterprise and consumer-facing products.",
+  "stats": [
+    { "value": "5+", "label": "Years Experience" },
+    { "value": "2", "label": "Live Products" },
+    { "value": "10K+", "label": "Active Users" }
+  ],
+  "skills": [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "JavaScript (ES6+)",
+    "HTML5",
+    "CSS3",
+    "Redux",
+    "Zustand",
+    "Tailwind CSS",
+    "Material UI",
+    "Node.js",
+    "Express.js",
+    "REST API Design",
+    "GraphQL",
+    "Microservices",
+    "PostgreSQL",
+    "MongoDB",
+    "MySQL",
+    "Redis",
+    "Prisma",
+    "Mongoose",
+    "JWT",
+    "OAuth 2.0",
+    "Docker",
+    "CI/CD",
+    "Jest",
+    "React Testing Library",
+    "Cypress"
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "role": "Software Engineer",
+      "company": "Ingram Micro",
+      "companyShort": "INGRAM",
+      "type": "Full-time",
+      "location": "Pune",
+      "period": "July 2024",
+      "periodEnd": "Present",
+      "bullets": [
+        "Building enterprise-grade pricing management UIs for the Global Price Engine platform used across multiple countries.",
+        "Architected and built a multi-region pricing dashboard in React + TypeScript with Next.js-based SSR for improved SEO and initial load performance.",
+        "Built and maintained a shared design system and Storybook component library adopted across product modules.",
+        "Improved Core Web Vitals via code splitting, lazy loading, and critical CSS extraction; optimized rendering for large datasets."
+      ],
+      "desc": "Frontend and full-stack development for enterprise pricing dashboards, component library maintenance, and performance optimization.",
+      "tech": ["React", "Next.js", "TypeScript", "React Query", "Storybook", "Node.js", "Express", "PostgreSQL"]
+    },
+    {
+      "id": 2,
+      "role": "Full Stack Developer",
+      "company": "Webologix",
+      "companyShort": "WEBOLOGIX",
+      "type": "Full-time",
+      "location": "Noida",
+      "period": "Aug 2022",
+      "periodEnd": "June 2024",
+      "bullets": [
+        "Delivered end-to-end web applications using React and Node.js, serving 10K+ active users in production.",
+        "Led frontend development for a live e-commerce platform (Salt Attire), building responsive product listing and collection pages.",
+        "Developed reusable component libraries for filters, sorting, and pagination, reducing duplication and accelerating delivery.",
+        "Built RESTful APIs with Node.js and Express for product catalog and inventory services; implemented JWT-based authentication."
+      ],
+      "desc": "Full-stack delivery across frontend and backend for e-commerce and consumer web applications.",
+      "tech": ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "JWT", "Docker"]
+    },
+    {
+      "id": 3,
+      "role": "Frontend Developer",
+      "company": "Aptara",
+      "companyShort": "APTARA",
+      "type": "Full-time",
+      "location": "Noida",
+      "period": "Mar 2021",
+      "periodEnd": "Aug 2022",
+      "bullets": [
+        "Created responsive web applications using React.js, HTML5, and CSS3 across desktop, tablet, and mobile breakpoints.",
+        "Improved UI rendering performance through React.lazy, Suspense, and memoization techniques.",
+        "Integrated multiple REST APIs with robust error boundaries, loading states, and custom hooks; wrote unit tests with Jest."
+      ],
+      "desc": "Frontend engineering focused on performance, accessibility, and cross-browser compatibility.",
+      "tech": ["React", "HTML5", "CSS3", "JavaScript", "Jest", "React Testing Library"]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Global Price Engine — Enterprise Pricing Dashboard",
+      "subtitle": "Enterprise Pricing UI",
+      "type": "Product",
+      "link": "",
+      "image": "/assets/project-price-engine.png",
+      "tech": ["React.js", "Next.js", "TypeScript", "Material UI", "React Query", "Storybook"],
+      "desc": "Built a rule-based pricing engine UI enabling business teams to configure global pricing strategies across regions and currencies."
+    },
+    {
+      "id": 2,
+      "title": "Salt Attire — E-Commerce Platform",
+      "subtitle": "Live Production",
+      "type": "Production",
+      "link": "https://saltattire.com",
+      "image": "/assets/project-saltattire.png",
+      "tech": ["React.js", "Next.js", "Node.js", "REST APIs", "Responsive UI"],
+      "desc": "Led frontend development for a live e-commerce platform, building responsive product listing, collection, and sale pages optimized for SEO and high-traffic campaigns."
+    }
+  ],
+  "publications": [],
+  "socials": [
+    { "label": "LinkedIn", "href": "" },
+    { "label": "GitHub", "href": "" }
+  ]
+}
