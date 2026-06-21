@@ -21,6 +21,6 @@ npm run build
 
 - `data/profile.json` - profile, experience, featured work, links, and skills
 - `data/content.json` - section labels, hero pills, and footer copy
-- `public/assets/jyoti-hero.jpeg` - hero and intro portrait
-- `public/assets/jyoti-about.jpeg` - about portrait
-- `public/assets/jyoti-footer.jpeg` - footer portrait
+- `public/assets/hero1.png` - hero portrait
+- `public/assets/akshay-about.png` - about portrait
+- `public/assets/akshay-footer.jpeg` - footer portrait

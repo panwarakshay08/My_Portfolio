@@ -89,6 +89,7 @@ export default function HeroSection() {
 
   const sidebarSocials = SIDEBAR_LABELS
     .map(label => profile.socials.find(s => s.label === label))
+    .filter(social => social?.href)
     .filter(Boolean)
 
   return (
@@ -99,7 +100,7 @@ export default function HeroSection() {
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>
         <Image
-          src="/assets/hero1.png" alt={profile.name.full}
+          src="/assets/about-section1.png" alt={profile.name.full}
           fill priority quality={100}
           sizes="(min-width: 768px) 55vw, 100vw"
           className={styles.photoImg}

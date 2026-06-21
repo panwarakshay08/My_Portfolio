@@ -29,6 +29,7 @@ const MOBILE_SOCIAL_ICONS = {
   Instagram: <FaInstagram size={20} />,
 }
 const HERO_SOCIAL_LABELS = ['GitHub', 'LinkedIn', 'Instagram']
+const SOCIALS_WITH_HREF = profile.socials.filter(s => s.href)
 
 const VID_VERT = `
   varying vec2 vUv;
@@ -350,7 +351,7 @@ export default function PublicationsFooterSection() {
         {/* ── Floating image: starts left, moves to center ── */}
         <div ref={imageWrapRef} className={styles.imageWrap}>
           <Image
-            src="/assets/jyoti-footer.jpeg"
+            src="/assets/akshay-footer.jpeg"
             alt=""
             fill
             quality={100}
@@ -366,7 +367,7 @@ export default function PublicationsFooterSection() {
           <span className={styles.watermark} aria-hidden>IMPACT</span>
 
           <div className={styles.pubHero}>
-            <p  ref={labelRef}   className={styles.label}>AI &amp; Automation</p>
+            <p  ref={labelRef}   className={styles.label}>Full Stack Engineering</p>
             <h2 ref={headingRef} className={styles.heading}>Featured Work</h2>
           </div>
 
@@ -464,7 +465,7 @@ export default function PublicationsFooterSection() {
             </div>
             <div className={styles.mobileSocialRow}>
               {HERO_SOCIAL_LABELS.map((label, i) => {
-                const s = profile.socials.find(s => s.label === label)
+                const s = profile.socials.find(s => s.label === label && s.href)
                 if (!s) return null
                 return (
                   <Fragment key={label}>
@@ -502,7 +503,7 @@ export default function PublicationsFooterSection() {
               <div className={styles.footerInfo}>
                 <p className={styles.footerDescription}>{profile.description}</p>
                 <div className={styles.footerLinks}>
-                  {profile.socials.slice(0, 4).map((s, i) => (
+                  {SOCIALS_WITH_HREF.slice(0, 4).map((s, i) => (
                     <span key={s.label} className={styles.footerLinkWrap}>
                       {i > 0 && <span className={styles.footerPipe}>|</span>}
                       <a
@@ -552,7 +553,7 @@ export default function PublicationsFooterSection() {
           <div ref={bottomBarRef} className={styles.bottomBar}>
             <div className={styles.bottomLeft}>
               <div className={styles.monogram}>
-                <span className={styles.monoLetters}>JS</span>
+                <span className={styles.monoLetters}>AK</span>
                 <span className={styles.monoDot} />
               </div>
               <span className={styles.leftDivider} />

@@ -3,6 +3,7 @@ import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
 import { SITE_URL } from '@/lib/siteConfig';
 import { Analytics } from "@vercel/analytics/next";
+import profile from '@/data/profile.json';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,48 +27,44 @@ const dancing = Dancing_Script({
   weight: ["400", "700"],
 });
 
-const description =
-  'Full Stack Engineer with 5+ years of experience building high-performance frontends with React/Next.js and production backends with Node.js and Express.';
+const description = profile.description;
+const title = `${profile.name.full} | ${profile.roles.short}`;
+const socialLinks = profile.socials.map((social) => social.href).filter(Boolean);
+const projectLinks = profile.projects.map((project) => project.link).filter(Boolean);
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
     title: {
-    default: 'Akshay Kumar | Full Stack Engineer',
-    template: '%s | Akshay Kumar',
+    default: title,
+    template: `%s | ${profile.name.full}`,
   },
   description,
   keywords: [
-    'Akshay Kumar',
-    'Full Stack Engineer',
-    'React',
-    'Next.js',
-    'TypeScript',
-    'Node.js',
-    'REST APIs',
-    'Microservices',
-    'Frontend Performance',
+    profile.name.full,
+    profile.roles.short,
+    ...profile.skills.slice(0, 14),
   ],
-  authors: [{ name: 'Akshay Kumar', url: SITE_URL }],
-  creator: 'Akshay Kumar',
+  authors: [{ name: profile.name.full, url: SITE_URL }],
+  creator: profile.name.full,
   openGraph: {
     type: 'website',
-    locale: 'en_SG',
+    locale: 'en_IN',
     url: SITE_URL,
-    siteName: 'Akshay Kumar',
-    title: 'Akshay Kumar | Full Stack Engineer',
+    siteName: profile.name.full,
+    title,
     description,
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Akshay Kumar | Full Stack Engineer Portfolio',
+        alt: `${profile.name.full} | ${profile.roles.short} Portfolio`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Akshay Kumar | Full Stack Engineer',
+    title,
     description,
     images: ['/opengraph-image'],
   },
@@ -104,6 +101,27 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile.name.full,
+    url: SITE_URL,
+    email: profile.email,
+    telephone: profile.phone,
+    jobTitle: profile.roles.short,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: profile.location.based,
+      addressCountry: 'IN',
+    },
+    knowsAbout: profile.skills,
+    alumniOf: profile.education.map((item) => ({
+      '@type': 'CollegeOrUniversity',
+      name: item.school,
+    })),
+    sameAs: [...socialLinks, ...projectLinks],
+  };
+
   return (
     <html
       lang="en"
@@ -113,18 +131,7 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Akshay Kumar',
-              url: SITE_URL,
-              email: 'panwarakshay08@gmail.com',
-              jobTitle: 'Full Stack Engineer',
-              sameAs: [
-                'https://saltattire.com',
-                'https://saltattire.com',
-              ],
-            }),
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
           }}
         />
         <Cursor />

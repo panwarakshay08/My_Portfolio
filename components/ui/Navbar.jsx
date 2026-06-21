@@ -22,14 +22,16 @@ const NAV_ITEMS = [
   { label: 'Contact',      idx: 7 },
 ]
 
-function getIST() {
-  return new Date().toLocaleTimeString('en-IN', {
-    timeZone: 'Asia/Singapore',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true,
-  }).toUpperCase()
+const INDIA_TIME_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Calcutta',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: true,
+})
+
+function getIndiaTime() {
+  return INDIA_TIME_FORMATTER.format(new Date()).toUpperCase()
 }
 
 export default function Navbar() {
@@ -42,11 +44,15 @@ export default function Navbar() {
   const hidden      = useRef(false)
   const stopTimer   = useRef(null)
 
-  // Live clock - set immediately on mount, then every second
+  // Live clock
   useEffect(() => {
-    setTime(getIST())
-    const id = setInterval(() => setTime(getIST()), 1000)
-    return () => clearInterval(id)
+    const tick = () => setTime(getIndiaTime())
+    const timer = setTimeout(tick, 0)
+    const id = setInterval(tick, 1000)
+    return () => {
+      clearTimeout(timer)
+      clearInterval(id)
+    }
   }, [])
 
   // Auto-hide on scroll-down, reveal on scroll-up or scroll-stop
@@ -92,7 +98,7 @@ export default function Navbar() {
   return (
     <>
       <header ref={headerRef} className={`${styles.header} ${onIntro ? styles.introMode : ''} ${onDark ? styles.darkMode : ''}`}>
-        <span className={styles.time}>SINGAPORE TIME - {time}</span>
+        <span className={styles.time}>INDIA TIME - {time}</span>
 
         <NavigationMenu className={styles.navMenu}>
           <NavigationMenuList className="flex gap-6">
