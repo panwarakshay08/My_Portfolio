@@ -143,7 +143,7 @@ export default function WorkExperienceSection() {
                   className={styles.card}
                 >
                   <div className={styles.cardHead}>
-                    <span className={styles.period}>{exp.period} - {exp.periodEnd}</span>
+                    <span className={styles.period}>{[exp.period, exp.periodEnd].filter(Boolean).join(' - ')}</span>
                     <span className={styles.typeTag}>{exp.type}</span>
                     {exp.location && <span className={styles.location}>{exp.location}</span>}
                   </div>

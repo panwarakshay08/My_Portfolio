@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "Jyoti Sinha",
-    "email": "jyotisinha0526@gmail.com",
-    "url": "https://ctm-log-analyzer.netlify.app/"
+    "name": "Akshay Kumar",
+    "email": "panwarakshay08@gmail.com",
+    "url": "https://akshay-kumar-portfolio.vercel.app"
   },
   "scripts": {
     "dev": "next dev",

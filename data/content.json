@@ -3,20 +3,20 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "Control-M",
-    "freelanceNote": "Open to Control-M, production support, automation, and AI operations opportunities.",
+    "taglineHighlight": "React.js",
+    "freelanceNote": "Open to full-stack, frontend-focused, React, Next.js, Node.js, and TypeScript opportunities.",
     "availableLabel": "Available for opportunities",
-    "pills": ["Control-M SME", "L3 Production Support", "Agentic AI", "Automation"],
-    "specialistStat": { "value": "Control-M + AI", "label": "Specialist" }
+    "pills": ["React.js", "Next.js", "TypeScript", "Node.js", "Java"],
+    "specialistStat": { "value": "React + Node", "label": "Specialist" }
   },
   "interstitial": {
     "availabilityLabel": "Availability",
     "basedInLabel": "Based in",
-    "statLabels": ["Years\nexperience", "Enterprise\nroles", "AI automation\nprojects"]
+    "statLabels": ["Years\nexperience", "SKU records\nmanaged", "Active\nusers"]
   },
   "footer": {
-    "eyebrow": "Available for enterprise support and automation",
-    "ctaLines": ["Keeping critical", "workloads resilient"],
-    "ctaAccent": "trusted."
+    "eyebrow": "Available for full-stack product engineering",
+    "ctaLines": ["Building reliable", "web experiences"],
+    "ctaAccent": "at scale."
   }
 }

@@ -12,7 +12,9 @@ const WHO_ITEMS = profile.skills
 
 const ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Medium: FaMedium, Instagram: FaInstagram, YouTube: FaYoutube }
 
-const SOCIALS = profile.socials.map(s => ({ Icon: ICON_MAP[s.label], href: s.href, label: s.label }))
+const SOCIALS = profile.socials
+  .filter(s => s.href)
+  .map(s => ({ Icon: ICON_MAP[s.label], href: s.href, label: s.label }))
 
 export default function AboutSection() {
   const sectionRef  = useRef(null)
@@ -87,7 +89,7 @@ export default function AboutSection() {
         <div className={styles.photoWrap}>
           <div className={styles.photoFrame} data-about-photo>
             <Image
-              src="/assets/jyoti-about.png"
+              src="/assets/hero1-section.png"
               alt={profile.name.full}
               fill
               quality={100}

@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { SITE_URL } from '@/lib/siteConfig'
+import profile from '@/data/profile.json'
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Akshay Kumar | Software Engineer'
+export const alt = `${profile.name.full} | ${profile.roles.short}`
 
 export const size = {
   width: 1200,
@@ -13,7 +15,7 @@ export const size = {
 export const contentType = 'image/png'
 
 const ACCENT = '#f7931e'
-const photoUrl = `${SITE_URL}/assets/jyoti-about.jpeg`
+const photoUrl = `${SITE_URL}/assets/hero1.png`
 
 export default function Image() {
   return new ImageResponse(
@@ -80,7 +82,7 @@ export default function Image() {
                 textTransform: 'uppercase',
               }}
             >
-              CONTROL-M SME
+              FULL STACK ENGINEER
             </span>
           </div>
 
@@ -100,7 +102,7 @@ export default function Image() {
                 letterSpacing: -4,
               }}
             >
-              AKSHAY
+              {profile.name.first.toUpperCase()}
             </span>
 
             <span
@@ -111,7 +113,7 @@ export default function Image() {
                 letterSpacing: -4,
               }}
             >
-              KUMAR
+              {profile.name.last.toUpperCase()}
             </span>
           </div>
 
@@ -125,8 +127,8 @@ export default function Image() {
               marginBottom: 34,
             }}
           >
-            Enterprise workload automation, production support, and
-            AI-assisted operations for critical systems.
+            React, Next.js, TypeScript, Node.js, REST APIs, and scalable
+            product engineering for enterprise and consumer platforms.
           </div>
 
           {/* TAGS */}
@@ -139,10 +141,10 @@ export default function Image() {
             }}
           >
             {[
-              'Control-M',
-              'L3 Support',
-              'Automation',
-              'Agentic AI',
+              'React.js',
+              'Next.js',
+              'TypeScript',
+              'Node.js',
             ].map((tag) => (
               <div
                 key={tag}
@@ -169,9 +171,9 @@ export default function Image() {
             }}
           >
             {[
-              ['15+', 'Years'],
-              ['8+', 'Roles'],
-              ['CTM + AI', 'Specialist'],
+              ['5+', 'Years'],
+              ['50K+', 'SKU Records'],
+              ['10K+', 'Users'],
             ].map(([value, label]) => (
               <div
                 key={label}
@@ -222,7 +224,7 @@ export default function Image() {
             src={photoUrl}
             width={420}
             height={630}
-            alt="Akshay Kumar"
+            alt={profile.name.full}
             style={{
               objectFit: 'cover',
             }}
@@ -250,7 +252,7 @@ export default function Image() {
             letterSpacing: 2,
           }}
         >
-          akshay-kumar-portfolio.vercel.app
+          {new URL(SITE_URL).host}
         </div>
       </div>
     ),

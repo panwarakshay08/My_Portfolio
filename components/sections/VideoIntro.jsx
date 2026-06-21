@@ -29,7 +29,10 @@ export default function VideoIntro() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    setIsMobile(window.matchMedia('(max-width: 767px)').matches)
+    const id = requestAnimationFrame(() => {
+      setIsMobile(window.matchMedia('(max-width: 767px)').matches)
+    })
+    return () => cancelAnimationFrame(id)
   }, [])
 
   // Entrance animation
