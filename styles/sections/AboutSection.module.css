@@ -35,11 +35,206 @@
   overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  cursor: none;
+  --reveal-x: 50%;
+  --reveal-y: 38%;
+  --reveal-size: clamp(7rem, 11vw, 11.5rem);
 }
 
 .photoImg {
   object-fit: cover;
   object-position: top center;
+}
+
+.suitRevealImg {
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.45s ease, transform 0.75s ease, filter 0.45s ease;
+  filter: saturate(0.7) contrast(1.16) brightness(0.88) sepia(0.08);
+  mask-image: radial-gradient(
+    circle var(--reveal-size) at var(--reveal-x) var(--reveal-y),
+    #000 0%,
+    #000 58%,
+    rgba(0, 0, 0, 0.72) 70%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--reveal-size) at var(--reveal-x) var(--reveal-y),
+    #000 0%,
+    #000 58%,
+    rgba(0, 0, 0, 0.72) 70%,
+    transparent 100%
+  );
+}
+
+.photoFrameRevealActive .suitRevealImg {
+  opacity: 0.9;
+  transform: scale(1);
+}
+
+.systemScanLayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.35s ease;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 43%,
+      rgba(247, 147, 30, 0.35) 48%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(247, 147, 30, 0.24) 53%,
+      transparent 58%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(247, 147, 30, 0.12) 0,
+      rgba(247, 147, 30, 0.12) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  background-size: 220% 100%, auto, auto;
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(
+    circle calc(var(--reveal-size) * 0.98) at var(--reveal-x) var(--reveal-y),
+    #000 0%,
+    #000 54%,
+    rgba(0, 0, 0, 0.68) 72%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--reveal-size) * 0.98) at var(--reveal-x) var(--reveal-y),
+    #000 0%,
+    #000 54%,
+    rgba(0, 0, 0, 0.68) 72%,
+    transparent 100%
+  );
+  animation: systemSweep 3.4s ease-in-out infinite;
+}
+
+.photoFrameRevealActive .systemScanLayer {
+  opacity: 0.52;
+}
+
+.revealLens {
+  position: absolute;
+  left: var(--reveal-x);
+  top: var(--reveal-y);
+  width: calc(var(--reveal-size) * 1.88);
+  height: calc(var(--reveal-size) * 1.88);
+  border: 1px solid rgba(247, 147, 30, 0.78);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.16) inset,
+    0 0 0 6px rgba(247, 147, 30, 0.05),
+    0 0 24px rgba(247, 147, 30, 0.22),
+    0 0 70px rgba(247, 147, 30, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.92);
+  transition: opacity 0.22s ease, transform 0.32s ease;
+  z-index: 3;
+}
+
+.revealLens::before,
+.revealLens::after {
+  content: '';
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.revealLens::before {
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  animation: scannerRotate 9s linear infinite;
+}
+
+.revealLens::after {
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(247, 147, 30, 0.62) 49% 51%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(255, 255, 255, 0.22) 49% 51%, transparent 52% 100%);
+  opacity: 0.75;
+}
+
+.photoFrameRevealActive .revealLens {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.revealHint {
+  position: absolute;
+  right: 0.8rem;
+  top: 0.8rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 147, 30, 0.36);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(247, 147, 30, 0.9) 0 12%, transparent 13%),
+    rgba(5, 5, 5, 0.42);
+  box-shadow: 0 0 20px rgba(247, 147, 30, 0.14);
+  pointer-events: none;
+  z-index: 4;
+  animation: hintPulse 2.2s ease-in-out infinite;
+}
+
+.revealHint::before,
+.revealHint::after {
+  content: '';
+  position: absolute;
+  inset: 0.42rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+}
+
+.revealHint::after {
+  inset: 0.72rem;
+  border-color: rgba(247, 147, 30, 0.58);
+}
+
+.photoFrameRevealActive .revealHint {
+  opacity: 0;
+}
+
+.revealBadge {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid rgba(247, 147, 30, 0.34);
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.68);
+  color: var(--accent);
+  font-size: 0.56rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.photoFrameRevealActive .revealBadge {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Signature - overlaps bottom-right corner of photo */
@@ -225,6 +420,26 @@
   50%       { opacity: 0; }
 }
 
+@keyframes scannerRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes systemSweep {
+  0%, 100% { background-position: 130% 0, 0 0, 0 0; }
+  50% { background-position: -40% 0, 0 10px, 12px 0; }
+}
+
+@keyframes hintPulse {
+  0%, 100% {
+    opacity: 0.76;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
 @media (max-width: 767px) {
   .content {
     justify-content: start;
@@ -245,6 +460,9 @@
     overflow: visible;
   }
   .photoWrap    { flex: 1; max-height: 100%; align-self: stretch; height: 100%; }
+  .photoFrame   { --reveal-size: 6.8rem; }
+  .revealHint   { width: 1.9rem; height: 1.9rem; right: 0.55rem; top: 0.55rem; }
+  .revealBadge  { left: 0.55rem; bottom: 0.55rem; font-size: 0.48rem; }
   .socials      { flex-direction: column; margin-top: 0; gap: 0.4rem; }
   .socialLink   { width: 2rem; height: 2rem; font-size: 1rem; }
   .content      { padding: 1rem 1.25rem 0.75rem; overflow-y: auto; -webkit-overflow-scrolling: touch; }

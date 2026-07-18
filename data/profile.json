@@ -95,6 +95,7 @@
       "period": "July 2024",
       "periodEnd": "Present",
       "scope": "Enterprise Pricing",
+      "impactHeadline": "Pricing intelligence for global B2B technology distribution",
       "impact": ["50K+ SKUs", "15+ API integrations", "Multi-region workflows"],
       "bullets": [
         "Own Java Full Stack delivery for the Global Price Engine platform, building scalable pricing workflows across Spring Boot services and React/Next.js user experiences.",
@@ -116,6 +117,7 @@
       "period": "August 2022",
       "periodEnd": "June 2024",
       "scope": "Commerce Platform",
+      "impactHeadline": "Production commerce experiences built for discovery and conversion",
       "impact": ["10K+ active users", "35% faster pages", "40% less duplication"],
       "bullets": [
         "Led end-to-end engineering for production web applications, translating product goals into responsive interfaces, REST APIs, reusable components, and deployment-ready features.",
@@ -125,7 +127,7 @@
         "Developed Node.js and Express APIs for catalog, inventory, promotions, and authentication with JWT, bcrypt password hashing, and CSRF-aware session handling."
       ],
       "desc": "Full Stack Engineer delivering production-grade React and Node.js applications with strong ownership across frontend architecture, API design, performance optimization, secure authentication, reusable component systems, and Agile product delivery for 10K+ active users.",
-      "tech": ["React.js", "Next.js", "JavaScript", "Node.js", "Express.js", "REST APIs", "JWT", "Docker", "JIRA"]
+      "tech": ["React.js", "Next.js", "JavaScript", "Node.js", "Express.js", "REST APIs", "JWT", "JIRA"]
     },
     {
       "id": 3,
@@ -137,6 +139,7 @@
       "period": "March 2021",
       "periodEnd": "August 2022",
       "scope": "React UI Systems",
+      "impactHeadline": "Accessible React interfaces with measurable release quality gains",
       "impact": ["5K+ daily users", "30% render improvement", "25% fewer regressions"],
       "bullets": [
         "Built responsive, accessible React interfaces across desktop, tablet, and mobile experiences, serving 5K+ daily users with consistent cross-browser behavior.",
@@ -158,6 +161,7 @@
       "period": "Earlier Experience",
       "periodEnd": "",
       "scope": "Operations",
+      "impactHeadline": "Operational reporting and document workflows with quality discipline",
       "impact": ["Power BI reporting", "Advanced Excel workflows", "Quality checks", "Advanced MS Office"],
       "bullets": [
         "Handled document operations, reporting, and formatting workflows using Advanced Excel, Power BI, and Microsoft Office tools.",

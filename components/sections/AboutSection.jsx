@@ -26,6 +26,37 @@ export default function AboutSection() {
   const [typed, setTyped] = useState(0)
   const [done,  setDone]  = useState(false)
   const [activeSkill, setActiveSkill] = useState(0)
+  const [revealActive, setRevealActive] = useState(false)
+  const [revealPinned, setRevealPinned] = useState(false)
+
+  function moveReveal(e) {
+    const frame = e.currentTarget
+    const rect = frame.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    frame.style.setProperty('--reveal-x', `${x}%`)
+    frame.style.setProperty('--reveal-y', `${y}%`)
+  }
+
+  function handleRevealEnter(e) {
+    moveReveal(e)
+    setRevealActive(true)
+  }
+
+  function handleRevealLeave() {
+    setRevealActive(false)
+  }
+
+  function handleRevealClick(e) {
+    moveReveal(e)
+    setRevealPinned(current => !current)
+  }
+
+  function handleRevealKeyDown(e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    setRevealPinned(current => !current)
+  }
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -102,7 +133,18 @@ export default function AboutSection() {
       {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoWrap}>
-          <div className={styles.photoFrame} data-about-photo>
+          <div
+            className={`${styles.photoFrame} ${(revealActive || revealPinned) ? styles.photoFrameRevealActive : ''}`}
+            data-about-photo
+            role="button"
+            tabIndex={0}
+            aria-label="Toggle AI systems mode reveal"
+            onPointerEnter={handleRevealEnter}
+            onPointerMove={moveReveal}
+            onPointerLeave={handleRevealLeave}
+            onClick={handleRevealClick}
+            onKeyDown={handleRevealKeyDown}
+          >
             <Image
               src="/assets/hero1-section.png"
               alt={profile.name.full}
@@ -111,6 +153,18 @@ export default function AboutSection() {
               sizes="(min-width: 768px) 30vw, 100vw"
               className={styles.photoImg}
             />
+            <Image
+              src="/assets/mask-hero.png"
+              alt=""
+              fill
+              sizes="(min-width: 768px) 30vw, 100vw"
+              className={styles.suitRevealImg}
+              aria-hidden
+            />
+            <span className={styles.systemScanLayer} aria-hidden />
+            <span className={styles.revealLens} aria-hidden />
+            <span className={styles.revealHint} aria-hidden />
+            <span className={styles.revealBadge} aria-hidden>AI Systems Mode</span>
           </div>
           <p className={styles.signature}>{profile.name.first}</p>
         </div>

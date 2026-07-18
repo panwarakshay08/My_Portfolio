@@ -11,6 +11,7 @@ const EXPS = profile.experience
 export default function WorkExperienceSection() {
   const sectionRef        = useRef(null)
   const lineRef           = useRef(null)
+  const timelineRef       = useRef(null)
   const dotRefs           = useRef([])
   const cardRefs          = useRef([])
   const tlRef             = useRef(null)
@@ -96,12 +97,33 @@ export default function WorkExperienceSection() {
     return () => scroller.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const timeline = timelineRef.current
+    if (!timeline) return
+
+    function onWheel(e) {
+      const canScroll = timeline.scrollHeight > timeline.clientHeight + 2
+      if (!canScroll) return
+
+      const atTop = timeline.scrollTop <= 0
+      const atBottom = timeline.scrollTop + timeline.clientHeight >= timeline.scrollHeight - 2
+      const movingDown = e.deltaY > 0
+
+      if ((movingDown && !atBottom) || (!movingDown && !atTop)) {
+        e.stopPropagation()
+      }
+    }
+
+    timeline.addEventListener('wheel', onWheel, { capture: true })
+    return () => timeline.removeEventListener('wheel', onWheel, { capture: true })
+  }, [])
+
   return (
     <section ref={sectionRef} className={styles.section}>
 
       <div className={styles.bgImg} aria-hidden>
         <Image
-          src="/assets/engineering-snapshot-bg.png"
+          src="/assets/work-experience-systems-bg.png"
           alt=""
           fill
           quality={100}
@@ -115,7 +137,7 @@ export default function WorkExperienceSection() {
         <span className={styles.labelRight}>0{EXPS.length} Companies</span>
       </div>
 
-      <div className={styles.timeline}>
+      <div ref={timelineRef} className={styles.timeline}>
         <div className={styles.timelineBody}>
 
           {/* Snake connector */}
@@ -152,6 +174,9 @@ export default function WorkExperienceSection() {
                     <p className={styles.role}>{exp.role}</p>
                     {exp.scope && <span className={styles.scopeBadge}>{exp.scope}</span>}
                   </div>
+                  {exp.impactHeadline && (
+                    <p className={styles.impactHeadline}>{exp.impactHeadline}</p>
+                  )}
                   {exp.impact?.length > 0 && (
                     <div className={styles.impactRow} aria-label={`${exp.company} impact`}>
                       {exp.impact.map(item => (
