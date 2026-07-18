@@ -3,15 +3,15 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "React.js",
-    "freelanceNote": "Open to full-stack, frontend-focused, React, Next.js, Node.js, and TypeScript opportunities.",
+    "taglineHighlight": "AI-Assisted Development",
+    "freelanceNote": "Open to Java full-stack, React, Next.js, Node.js, TypeScript, and AI-assisted product engineering opportunities.",
     "availableLabel": "Available for opportunities",
-    "pills": ["React.js", "Next.js", "TypeScript", "Node.js", "Java"],
-    "specialistStat": { "value": "React + Node", "label": "Specialist" }
+    "pills": ["Java Full Stack", "React.js", "Spring Boot", "AI-Assisted Dev"],
+    "specialistStat": { "value": "AI + Full Stack", "label": "Specialist" }
   },
   "interstitial": {
     "availabilityLabel": "Availability",
-    "basedInLabel": "Based in",
+    "basedInLabel": "Currently in",
     "statLabels": ["Years\nexperience", "SKU records\nmanaged", "Active\nusers"]
   },
   "footer": {

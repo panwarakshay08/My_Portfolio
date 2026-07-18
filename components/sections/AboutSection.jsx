@@ -21,10 +21,18 @@ export default function AboutSection() {
   const photoRef    = useRef(null)
   const contentRef  = useRef(null)
   const socialsRef  = useRef(null)
-  const intervalRef = useRef(null)
+  const rafRef      = useRef(null)
 
   const [typed, setTyped] = useState(0)
   const [done,  setDone]  = useState(false)
+  const [activeSkill, setActiveSkill] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveSkill(current => (current + 1) % WHO_ITEMS.length)
+    }, 1600)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -36,7 +44,7 @@ export default function AboutSection() {
     let isActive = false
 
     function resetAnim() {
-      clearInterval(intervalRef.current)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
       gsap.killTweensOf(photoRef.current)
       gsap.killTweensOf(contentRef.current)
       const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
@@ -55,28 +63,35 @@ export default function AboutSection() {
       const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
       gsap.to(socialIcons, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1, delay: 0.5 })
 
-      let i = 0
-      intervalRef.current = setInterval(() => {
-        i = Math.min(i + 6, BIO.length)
-        setTyped(i)
-        if (i >= BIO.length) {
-          clearInterval(intervalRef.current)
+      const startedAt = performance.now()
+      const duration = Math.max(1800, BIO.length * 4.8)
+
+      function tick(now) {
+        const progress = Math.min((now - startedAt) / duration, 1)
+        setTyped(Math.round(progress * BIO.length))
+
+        if (progress < 1) {
+          rafRef.current = requestAnimationFrame(tick)
+        } else {
           setDone(true)
         }
-      }, 16)
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
     }
 
     resetAnim()
 
     function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.5
+      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.85
       if (inRange && !isActive)  { isActive = true;  playAnim() }
       if (!inRange && isActive)  { isActive = false; resetAnim() }
     }
 
     scroller.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => {
-      clearInterval(intervalRef.current)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
       scroller.removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -125,10 +140,17 @@ export default function AboutSection() {
         <div className={styles.marqueeWrap}>
           <div className={styles.marqueeTrack}>
             {[...WHO_ITEMS, ...WHO_ITEMS].map((item, i) => (
-              <span key={i} className={styles.marqueeItem}>
+              <button
+                key={`${item}-${i}`}
+                type="button"
+                className={`${styles.marqueeItem} ${i % WHO_ITEMS.length === activeSkill ? styles.marqueeItemActive : ''}`}
+                onClick={() => setActiveSkill(i % WHO_ITEMS.length)}
+                onMouseEnter={() => setActiveSkill(i % WHO_ITEMS.length)}
+                aria-pressed={i % WHO_ITEMS.length === activeSkill}
+              >
                 {item}
                 <span className={styles.marqueeDot}>·</span>
-              </span>
+              </button>
             ))}
           </div>
         </div>

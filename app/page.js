@@ -8,13 +8,14 @@ import HeroSection           from '@/components/sections/HeroSection'
 import AboutSection          from '@/components/sections/AboutSection'
 import ProjectsSection       from '@/components/sections/ProjectsSection'
 import WorkExperienceSection from '@/components/sections/WorkExperienceSection'
+import EducationSection      from '@/components/sections/EducationSection'
 import PublicationsFooterSection from '@/components/sections/PublicationsFooterSection'
 import ScreenLoader from '@/components/sections/ScreenLoader'
 import profile               from '@/data/profile.json'
 
-// Snap: 0=video 1=hero 2=about 3..4=projects 5=work-exp 6=publications 7=footer (mobile: 6=publications 7=footer)
+// Snap: 0=video 1=hero 2=about 3=education 4..(3+projects)=projects, then work-exp, publications, footer.
 const PROJECT_SLIDES = profile.projects.length
-const TOTAL          = 7 + PROJECT_SLIDES  // 9
+const TOTAL          = 8 + PROJECT_SLIDES
 
 export default function Home() {
   const mainRef        = useRef(null)
@@ -169,12 +170,27 @@ export default function Home() {
       <Navbar />
       <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
         <div>
-          <VideoIntro />
-          <HeroSection />
-          <AboutSection />
-          <ProjectsSection />
-          <WorkExperienceSection />
-          <PublicationsFooterSection />
+          <div data-nav-section="home">
+            <VideoIntro />
+          </div>
+          <div data-nav-section="hero">
+            <HeroSection />
+          </div>
+          <div data-nav-section="about">
+            <AboutSection />
+          </div>
+          <div data-nav-section="education">
+            <EducationSection />
+          </div>
+          <div data-nav-section="work">
+            <ProjectsSection />
+          </div>
+          <div data-nav-section="experience">
+            <WorkExperienceSection />
+          </div>
+          <div data-nav-section="impact">
+            <PublicationsFooterSection />
+          </div>
         </div>
       </main>
     </>

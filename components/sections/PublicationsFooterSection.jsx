@@ -1,12 +1,12 @@
 
 'use client'
 
-import { useEffect, useRef, Fragment } from 'react'
+import { useEffect, useRef, Fragment, useState } from 'react'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
 import {
-  FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube, FaEnvelope,
+  FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube, FaEnvelope, FaPhoneAlt, FaWhatsapp,
 } from 'react-icons/fa'
 import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
 import profile from '@/data/profile.json'
@@ -30,6 +30,36 @@ const MOBILE_SOCIAL_ICONS = {
 }
 const HERO_SOCIAL_LABELS = ['GitHub', 'LinkedIn', 'Instagram']
 const SOCIALS_WITH_HREF = profile.socials.filter(s => s.href)
+const PHONE_NUMBER = profile.phone.replace(/\D/g, '')
+const INDIA_PHONE_NUMBER = PHONE_NUMBER.length === 10 ? `91${PHONE_NUMBER}` : PHONE_NUMBER
+const INSTAGRAM_PROFILE = profile.socials.find(s => s.label === 'Instagram' && s.href)
+const GITHUB_PROFILE = profile.socials.find(s => s.label === 'GitHub' && s.href)
+const WHATSAPP_MESSAGE = encodeURIComponent('Hi Akshay, I saw your portfolio and would like to connect with you regarding a full-stack engineering opportunity.')
+const WHATSAPP_URL = `https://wa.me/${INDIA_PHONE_NUMBER}?text=${WHATSAPP_MESSAGE}`
+const CONTACT_LINKS = [
+  {
+    label: 'Email',
+    href: `mailto:${profile.email}`,
+    icon: <FaEnvelope size={13} />,
+  },
+  ...(GITHUB_PROFILE ? [{
+    label: 'GitHub',
+    href: GITHUB_PROFILE.href,
+    icon: <FaGithub size={14} />,
+    external: true,
+  }] : []),
+  {
+    label: 'Phone',
+    href: `tel:+${INDIA_PHONE_NUMBER}`,
+    icon: <FaPhoneAlt size={12} />,
+  },
+  ...(INSTAGRAM_PROFILE ? [{
+    label: 'Instagram',
+    href: INSTAGRAM_PROFILE.href,
+    icon: <FaInstagram size={14} />,
+    external: true,
+  }] : []),
+]
 
 const VID_VERT = `
   varying vec2 vUv;
@@ -86,6 +116,7 @@ function handleViewProjects() {
 }
 
 export default function PublicationsFooterSection() {
+  const [activePub, setActivePub] = useState(null)
   const wrapperRef = useRef(null)
   const stickyRef  = useRef(null)
 
@@ -111,6 +142,17 @@ export default function PublicationsFooterSection() {
   const rightRef        = useRef(null)
   const bigNameRef      = useRef(null)
   const bottomBarRef    = useRef(null)
+
+  useEffect(() => {
+    if (!activePub) return
+
+    function onKeyDown(e) {
+      if (e.key === 'Escape') setActivePub(null)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [activePub])
 
   useEffect(() => {
     const wrapper       = wrapperRef.current
@@ -375,11 +417,10 @@ export default function PublicationsFooterSection() {
 
           <div className={styles.list}>
             {PUBS.map((pub, i) => (
-              <a
+              <button
                 key={pub.id}
-                href={pub.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() => setActivePub(pub)}
                 ref={el => { itemRefs.current[i] = el }}
                 className={styles.item}
               >
@@ -397,7 +438,7 @@ export default function PublicationsFooterSection() {
                     View <FiArrowUpRight size={11} />
                   </span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
@@ -459,9 +500,24 @@ export default function PublicationsFooterSection() {
             </h2>
             <p className={styles.mobileDesc}>{profile.description}</p>
             <div className={styles.mobileCtas}>
-              <a href={`mailto:${profile.email}`} className={styles.mobileTalkBtn}>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.mobileTalkBtn}>
                 Let&apos;s talk <FiArrowUpRight />
               </a>
+            </div>
+            <div className={styles.mobileContactGrid} aria-label="Contact links">
+              {CONTACT_LINKS.map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={styles.mobileContactLink}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  <span className={styles.mobileContactIcon}>{link.icon}</span>
+                </a>
+              ))}
             </div>
             <div className={styles.mobileSocialRow}>
               {HERO_SOCIAL_LABELS.map((label, i) => {
@@ -520,10 +576,21 @@ export default function PublicationsFooterSection() {
                     </span>
                   ))}
                 </div>
-                <a href={`mailto:${profile.email}`} className={styles.footerMail}>
-                  <FaEnvelope size={12} />
-                  {profile.email}
-                </a>
+                <div className={styles.contactGrid} aria-label="Contact links">
+                  {CONTACT_LINKS.map(link => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className={styles.contactLink}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
+                      aria-label={link.label}
+                      title={link.label}
+                    >
+                      <span className={styles.contactIcon}>{link.icon}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -538,7 +605,7 @@ export default function PublicationsFooterSection() {
                   ))}
                   <span className={styles.ctaAccent}>{content.footer.ctaAccent}</span>
                 </p>
-                <a href={`mailto:${profile.email}`} className={styles.talkBtn}>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.talkBtn}>
                   Let&apos;s talk
                 </a>
               </div>
@@ -573,6 +640,66 @@ export default function PublicationsFooterSection() {
             </div>
           </div>
         </div>
+
+        {activePub && (
+          <div
+            className={styles.modalLayer}
+            role="presentation"
+            onMouseDown={() => setActivePub(null)}
+            onWheel={e => e.stopPropagation()}
+            onTouchMove={e => e.stopPropagation()}
+          >
+            <section
+              className={styles.modal}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="featured-work-modal-title"
+              onMouseDown={e => e.stopPropagation()}
+              onWheel={e => e.stopPropagation()}
+              onTouchMove={e => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className={styles.modalClose}
+                onClick={() => setActivePub(null)}
+                aria-label="Close featured work details"
+              >
+                ×
+              </button>
+
+              <div className={styles.modalTop}>
+                <span className={styles.modalPlatform}>{activePub.platform}</span>
+                <span className={styles.modalYear}>{activePub.year}</span>
+              </div>
+
+              <h3 id="featured-work-modal-title" className={styles.modalTitle}>{activePub.title}</h3>
+              <p className={styles.modalHeadline}>{activePub.impact.headline}</p>
+
+              <div className={styles.modalMetrics}>
+                {activePub.impact.metrics.map(metric => (
+                  <span key={metric} className={styles.modalMetric}>{metric}</span>
+                ))}
+              </div>
+
+              <div className={styles.modalBody}>
+                <div className={styles.modalFocus}>
+                  <span className={styles.modalSectionLabel}>Engineering Focus</span>
+                  <p>{activePub.impact.focus}</p>
+                  <a href={activePub.link} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>
+                    Live demo <FiArrowUpRight size={14} />
+                  </a>
+                </div>
+
+                <ul className={styles.modalList}>
+                  {activePub.impact.bullets.map(point => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+
+            </section>
+          </div>
+        )}
 
       </div>
     </div>
