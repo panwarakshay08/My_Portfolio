@@ -16,7 +16,8 @@ const PROJECT_SLIDES = profile.projects.length
 const EDUCATION_START = 3
 const WORK_START = EDUCATION_START + 1
 const EXPERIENCE_START = WORK_START + PROJECT_SLIDES
-const IMPACT_START = EXPERIENCE_START + 1
+const FREELANCE_START = EXPERIENCE_START + 1
+const IMPACT_START = FREELANCE_START + 1
 const CONTACT_START = IMPACT_START + 2
 
 const NAV_ITEMS = [
@@ -25,6 +26,7 @@ const NAV_ITEMS = [
   { label: 'Education',    target: 'education',  idx: EDUCATION_START },
   { label: 'Work',         target: 'work',       idx: WORK_START },
   { label: 'Experience',   target: 'experience', idx: EXPERIENCE_START },
+  { label: 'Freelance',    target: 'freelance',  idx: FREELANCE_START },
   { label: 'Impact',       target: 'impact',     idx: IMPACT_START },
   { label: 'Contact',      target: 'impact',     idx: CONTACT_START, step: 2 },
 ]

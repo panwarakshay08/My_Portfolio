@@ -9,13 +9,14 @@ import AboutSection          from '@/components/sections/AboutSection'
 import ProjectsSection       from '@/components/sections/ProjectsSection'
 import WorkExperienceSection from '@/components/sections/WorkExperienceSection'
 import EducationSection      from '@/components/sections/EducationSection'
+import FreelanceSection      from '@/components/sections/FreelanceSection'
 import PublicationsFooterSection from '@/components/sections/PublicationsFooterSection'
 import ScreenLoader from '@/components/sections/ScreenLoader'
 import profile               from '@/data/profile.json'
 
-// Snap: 0=video 1=hero 2=about 3=education 4..(3+projects)=projects, then work-exp, publications, footer.
+// Snap: 0=video 1=hero 2=about 3=education 4..(3+projects)=projects, then work-exp, freelance, publications, footer.
 const PROJECT_SLIDES = profile.projects.length
-const TOTAL          = 8 + PROJECT_SLIDES
+const TOTAL          = 9 + PROJECT_SLIDES
 
 export default function Home() {
   const mainRef        = useRef(null)
@@ -187,6 +188,9 @@ export default function Home() {
           </div>
           <div data-nav-section="experience">
             <WorkExperienceSection />
+          </div>
+          <div data-nav-section="freelance">
+            <FreelanceSection />
           </div>
           <div data-nav-section="impact">
             <PublicationsFooterSection />

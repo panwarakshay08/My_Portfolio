@@ -227,6 +227,39 @@
   "certifications": [
     "Full Stack Web Development - Career Dose & Vistara"
   ],
+  "freelance": {
+    "eyebrow": "Freelance proof",
+    "heading": "Freelance builds with client-ready outcomes.",
+    "summary": "Independent work focused on clean interfaces, responsive implementation, fast iteration, and practical business results.",
+    "stats": [
+      { "value": "3+", "label": "Build Types" },
+      { "value": "Fast", "label": "Iteration Cycles" },
+      { "value": "Full Stack", "label": "Delivery" }
+    ],
+    "work": [
+      {
+        "title": "Portfolio & Brand Websites",
+        "type": "Frontend Build",
+        "delivered": ["Responsive UI", "SEO-ready pages", "Performance polish"],
+        "result": "Helped clients present a sharper online identity with fast-loading, mobile-first pages built for recruiter, customer, and lead discovery.",
+        "feedback": "Clear communication, polished UI execution, and fast iteration made the final website feel premium and easy to use."
+      },
+      {
+        "title": "Commerce Experiences",
+        "type": "Product UI",
+        "delivered": ["Product listing flows", "Filters & sorting", "Campaign pages"],
+        "result": "Built commerce-ready interfaces that made product discovery smoother, improved mobile browsing, and reduced repeated frontend work.",
+        "feedback": "The delivered pages felt clean, responsive, and ready for real customers without unnecessary complexity."
+      },
+      {
+        "title": "Dashboards & Internal Tools",
+        "type": "Full Stack Tooling",
+        "delivered": ["Admin workflows", "REST API integration", "Data tables"],
+        "result": "Created practical dashboards and workflow screens that made business operations easier to track, review, and update.",
+        "feedback": "The work converted unclear requirements into usable screens with reliable flows and clear edge-state handling."
+      }
+    ]
+  },
   "publications": [
     {
       "id": 1,
