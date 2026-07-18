@@ -94,6 +94,8 @@
       "location": "Pune",
       "period": "July 2024",
       "periodEnd": "Present",
+      "scope": "Enterprise Pricing",
+      "impact": ["50K+ SKUs", "15+ API integrations", "Multi-region workflows"],
       "bullets": [
         "Own Java Full Stack delivery for the Global Price Engine platform, building scalable pricing workflows across Spring Boot services and React/Next.js user experiences.",
         "Designed RESTful APIs and domain models for pricing rules, SKU operations, discounts, tax calculations, and multi-region configuration with clean contracts and predictable failure handling.",
@@ -113,6 +115,8 @@
       "location": "Noida",
       "period": "August 2022",
       "periodEnd": "June 2024",
+      "scope": "Commerce Platform",
+      "impact": ["10K+ active users", "35% faster pages", "40% less duplication"],
       "bullets": [
         "Led end-to-end engineering for production web applications, translating product goals into responsive interfaces, REST APIs, reusable components, and deployment-ready features.",
         "Built the Salt Attire e-commerce experience across product listing, collection, sale, filtering, sorting, pagination, and dynamic pricing workflows for high-traffic campaigns.",
@@ -132,6 +136,8 @@
       "location": "Noida",
       "period": "March 2021",
       "periodEnd": "August 2022",
+      "scope": "React UI Systems",
+      "impact": ["5K+ daily users", "30% render improvement", "25% fewer regressions"],
       "bullets": [
         "Built responsive, accessible React interfaces across desktop, tablet, and mobile experiences, serving 5K+ daily users with consistent cross-browser behavior.",
         "Improved rendering performance by 30% through component decomposition, React.lazy, Suspense, memoization, and elimination of unnecessary re-renders.",
@@ -144,13 +150,15 @@
     },
     {
       "id": 4,
-      "role": "Business Operations Associate",
+      "role": "Business Associate",
       "company": "Capgemini",
       "companyShort": "CAPGEMINI",
       "type": "Full-time",
       "location": "India",
       "period": "Earlier Experience",
       "periodEnd": "",
+      "scope": "Operations",
+      "impact": ["Power BI reporting", "Advanced Excel workflows", "Quality checks", "Advanced MS Office"],
       "bullets": [
         "Handled document operations, reporting, and formatting workflows using Advanced Excel, Power BI, and Microsoft Office tools.",
         "Created and maintained structured reports, trackers, and dashboards to support business process visibility and operational accuracy.",
@@ -254,7 +262,7 @@
     },
     {
       "id": 3,
-      "title": "Collaborative SEC Filing Editor",
+      "title": "Collaborative DFIN Editor",
       "platform": "DFIN Editor",
       "year": "2022",
       "link": "https://www.dfinsolutions.com/",

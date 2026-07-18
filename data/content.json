@@ -10,9 +10,26 @@
     "specialistStat": { "value": "AI + Full Stack", "label": "Specialist" }
   },
   "interstitial": {
-    "availabilityLabel": "Availability",
-    "basedInLabel": "Currently in",
-    "statLabels": ["Years\nexperience", "SKU records\nmanaged", "Active\nusers"]
+    "eyebrow": "Engineering snapshot",
+    "heading": "Full stack execution model",
+    "summary": "How I approach production work across Java services, React interfaces, API contracts, performance, and AI-assisted delivery.",
+    "pillars": [
+      {
+        "label": "Backend systems",
+        "value": "Java + Spring Boot",
+        "detail": "Reliable APIs, clean contracts, secure workflows"
+      },
+      {
+        "label": "Frontend quality",
+        "value": "React + Next.js",
+        "detail": "Fast interfaces, state clarity, responsive UX"
+      },
+      {
+        "label": "AI leverage",
+        "value": "Agent-assisted dev",
+        "detail": "Faster prototyping, debugging, documentation"
+      }
+    ]
   },
   "footer": {
     "eyebrow": "Available for full-stack product engineering",

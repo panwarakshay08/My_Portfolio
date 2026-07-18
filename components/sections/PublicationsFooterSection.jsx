@@ -393,7 +393,7 @@ export default function PublicationsFooterSection() {
         {/* ── Floating image: starts left, moves to center ── */}
         <div ref={imageWrapRef} className={styles.imageWrap}>
           <Image
-            src="/assets/akshay-footer.jpeg"
+            src="/assets/engineering-snapshot-bg.png"
             alt=""
             fill
             quality={100}
@@ -443,34 +443,25 @@ export default function PublicationsFooterSection() {
           </div>
         </div>
 
-        {/* ── Image-only interstitial (step 2) ── */}
+        {/* ── Engineering snapshot interstitial (step 2) ── */}
         <div ref={interstitialRef} className={styles.interstitial} aria-hidden>
 
           <div className={styles.interstitialLeft}>
-            <div className={styles.interStat}>
-              <span className={styles.interLabel}>{content.interstitial.availabilityLabel}</span>
-              <span className={styles.interBig}>{profile.location.availability}</span>
-            </div>
-            <div className={styles.interDividerH} />
-            <div className={styles.interStat}>
-              <span className={styles.interLabel}>{content.interstitial.basedInLabel}</span>
-              <span className={styles.interBig}>{profile.location.based}</span>
-            </div>
+            <span className={styles.interLabel}>{content.interstitial.eyebrow}</span>
+            <h2 className={styles.interHeading}>{content.interstitial.heading}</h2>
+            <p className={styles.interSummary}>{content.interstitial.summary}</p>
           </div>
 
           <div className={styles.interstitialRight}>
-            {profile.stats.map((stat, i) => (
-              <Fragment key={stat.label}>
-                {i > 0 && <div className={styles.interDividerV} />}
-                <div className={styles.interNum}>
-                  <span className={styles.interCount}>{stat.value}</span>
-                  <span className={styles.interNumLabel}>
-                    {(content.interstitial.statLabels[i] ?? stat.label).split('\n').map((line, j) => (
-                      <Fragment key={j}>{line}{j === 0 && <br />}</Fragment>
-                    ))}
-                  </span>
+            {content.interstitial.pillars.map((pillar, i) => (
+              <div key={pillar.label} className={styles.interPillar}>
+                <span className={styles.interPillarNum}>0{i + 1}</span>
+                <div>
+                  <span className={styles.interPillarLabel}>{pillar.label}</span>
+                  <strong className={styles.interPillarValue}>{pillar.value}</strong>
+                  <p className={styles.interPillarDetail}>{pillar.detail}</p>
                 </div>
-              </Fragment>
+              </div>
             ))}
           </div>
 
@@ -486,6 +477,19 @@ export default function PublicationsFooterSection() {
 
         {/* ── Footer content ── */}
         <div ref={footerContentRef} className={styles.footerContent}>
+
+          <div className={styles.agentBg} aria-hidden>
+            <Image
+              src="/assets/contact-ai-agent.png"
+              alt=""
+              fill
+              quality={100}
+              className={styles.agentBgImg}
+              sizes="100vw"
+              priority={false}
+            />
+            <div className={styles.agentBgOverlay} />
+          </div>
 
           {/* ── Mobile: hero-like layout ── */}
           <div className={styles.mobileLayout}>

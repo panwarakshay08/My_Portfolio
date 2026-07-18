@@ -101,7 +101,7 @@ export default function WorkExperienceSection() {
 
       <div className={styles.bgImg} aria-hidden>
         <Image
-          src="/assets/work-experience.webp"
+          src="/assets/engineering-snapshot-bg.png"
           alt=""
           fill
           quality={100}
@@ -148,7 +148,17 @@ export default function WorkExperienceSection() {
                     {exp.location && <span className={styles.location}>{exp.location}</span>}
                   </div>
                   <h2 className={styles.company}>{exp.company}</h2>
-                  <p  className={styles.role}>{exp.role}</p>
+                  <div className={styles.roleRow}>
+                    <p className={styles.role}>{exp.role}</p>
+                    {exp.scope && <span className={styles.scopeBadge}>{exp.scope}</span>}
+                  </div>
+                  {exp.impact?.length > 0 && (
+                    <div className={styles.impactRow} aria-label={`${exp.company} impact`}>
+                      {exp.impact.map(item => (
+                        <span key={item} className={styles.impactChip}>{item}</span>
+                      ))}
+                    </div>
+                  )}
                   <ul
                     ref={el => { bulletListRefs.current[i] = el }}
                     className={styles.bullets}
