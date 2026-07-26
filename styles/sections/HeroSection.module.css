@@ -19,13 +19,13 @@
   right: 0;
   top: 0;
   height: 100%;
-  width: 55%;
+  width: 58%;
   z-index: 1;
 }
 
 .photoImg {
   object-fit: cover;
-  object-position: center top;
+  object-position: 76% top;
 }
 
 /* ─── Social Sidebar ─────────────────────────────────────── */
@@ -333,12 +333,30 @@
   .name { white-space: normal; }
 
   .photo {
-    width: 72%;
-    height: 72svh;
-    top: auto;
-    bottom: 0;
+    width: 82%;
+    height: 100svh;
+    top: 0;
+    bottom: auto;
     right: 0;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 8%,
+      rgba(0, 0, 0, 0.82) 18%,
+      #000 26%,
+      #000 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 8%,
+      rgba(0, 0, 0, 0.82) 18%,
+      #000 26%,
+      #000 100%
+    );
   }
+
+  .photoImg { object-position: 68% top; }
 
   .stats       { gap: 0.35rem; flex-wrap: wrap; }
   .statCard    { padding: 0.4rem 0.7rem; min-width: 4.5rem; }
@@ -351,14 +369,14 @@
 }
 
 @media (max-width: 374px) {
-  .photo   { width: 75%; height: 65svh; }
+  .photo   { width: 86%; height: 100svh; }
   .content { top: 4.5rem; max-width: 60vw; }
 }
 
 /* ─── Responsive: Tablet 768–1023px ─────────────────────── */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   .content     { left: 3rem; top: 18vh; max-width: 40vw; --hero-name-size: clamp(3rem, 7vw, 6rem); }
-  .photo       { width: 55%; }
+  .photo       { width: 58%; }
   .cardsCol    { left: 43%; top: 22vh; width: clamp(175px, 18vw, 240px); }
   .socialSidebar { width: 2.25rem; }
   .name        { white-space: normal; }

@@ -3,16 +3,33 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "React.js",
-    "freelanceNote": "Open to full-stack, frontend-focused, React, Next.js, Node.js, and TypeScript opportunities.",
+    "taglineHighlight": "AI-Assisted Development",
+    "freelanceNote": "Open to Java full-stack, React, Next.js, Node.js, TypeScript, and AI-assisted product engineering opportunities.",
     "availableLabel": "Available for opportunities",
-    "pills": ["React.js", "Next.js", "TypeScript", "Node.js", "Java"],
-    "specialistStat": { "value": "React + Node", "label": "Specialist" }
+    "pills": ["Java Full Stack", "React.js", "Spring Boot", "AI-Assisted Dev"],
+    "specialistStat": { "value": "AI + Full Stack", "label": "Specialist" }
   },
   "interstitial": {
-    "availabilityLabel": "Availability",
-    "basedInLabel": "Based in",
-    "statLabels": ["Years\nexperience", "SKU records\nmanaged", "Active\nusers"]
+    "eyebrow": "Engineering snapshot",
+    "heading": "Full stack execution model",
+    "summary": "How I approach production work across Java services, React interfaces, API contracts, performance, and AI-assisted delivery.",
+    "pillars": [
+      {
+        "label": "Backend systems",
+        "value": "Java + Spring Boot",
+        "detail": "Reliable APIs, clean contracts, secure workflows"
+      },
+      {
+        "label": "Frontend quality",
+        "value": "React + Next.js",
+        "detail": "Fast interfaces, state clarity, responsive UX"
+      },
+      {
+        "label": "AI leverage",
+        "value": "Agent-assisted dev",
+        "detail": "Faster prototyping, debugging, documentation"
+      }
+    ]
   },
   "footer": {
     "eyebrow": "Available for full-stack product engineering",

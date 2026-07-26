@@ -34,8 +34,9 @@
 
 .bgImgEl {
   object-fit: cover;
-  object-position: center;
-  opacity: 0.07;
+  object-position: 58% center;
+  opacity: 0.28;
+  filter: saturate(0.86) brightness(0.48) contrast(1.08);
 }
 
 /* ── Header ────────────────────────────────────── */
@@ -68,9 +69,16 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 clamp(1.5rem, 5vw, 4.5rem) clamp(2rem, 5vh, 4rem);
-  overflow: visible;
+  justify-content: flex-start;
+  padding: clamp(0.8rem, 2vh, 1.4rem) clamp(1.5rem, 5vw, 4.5rem) clamp(4rem, 8vh, 5.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.timeline::-webkit-scrollbar {
+  display: none;
 }
 
 /* Relative wrapper for absolute snake line */
@@ -106,6 +114,7 @@
   align-items: flex-start;
   position: relative;
   z-index: 1;
+  padding-bottom: 1rem;
 }
 
 .entry {
@@ -160,8 +169,8 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding-top: clamp(1rem, 2.5vh, 2rem);
+  gap: 0.42rem;
+  padding-top: clamp(0.9rem, 2vh, 1.45rem);
 }
 
 .cardHead {
@@ -221,25 +230,103 @@
   text-transform: uppercase;
 }
 
+.roleRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.scopeBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.45rem;
+  padding: 0.18rem 0.48rem;
+  border: 1px solid rgba(247, 147, 30, 0.28);
+  border-radius: 999px;
+  background: rgba(247, 147, 30, 0.09);
+  color: var(--accent);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.impactHeadline {
+  margin: 0.05rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.72rem, 0.95vw, 0.9rem);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.impactRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.1rem;
+}
+
+.impactChip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.55rem;
+  padding: 0.22rem 0.48rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(8, 8, 8, 0.46);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
 /* ── Bullets ────────────────────────────────────── */
 .bullets {
   list-style: none;
-  padding: 0.1rem 0 0 0.75rem;
+  padding: 0.1rem 0 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  border-left: 2px solid rgba(247, 147, 30, 0.2);
+  gap: 0.5rem;
   min-width: 0;
   overflow: hidden;
-  max-height: 5rem; /* GSAP expands on hover */
+  max-height: 7.2rem; /* GSAP expands on hover */
 }
 
 .bullet {
-  font-size: var(--text-body);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.44);
+  position: relative;
+  font-size: clamp(0.78rem, 1.05vw, 1rem);
+  line-height: 1.42;
+  color: rgba(255, 255, 255, 0.58);
+  padding: 0.5rem 0.62rem 0.5rem 0.92rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(8, 8, 8, 0.42);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
   flex-shrink: 0;
+  backdrop-filter: blur(8px);
+}
+
+.bullet::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(247, 147, 30, 0.32);
 }
 
 /* ── Tech stack ─────────────────────────────────── */
@@ -275,6 +362,7 @@
     padding-right: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
+    overscroll-behavior: contain;
   }
 
   .snakeLine { display: none; }
@@ -301,14 +389,55 @@
   .card { padding-top: 0; }
 
   .company  { font-size: 1.1rem; }
+  .roleRow  { gap: 0.35rem; }
+  .scopeBadge { font-size: 0.5rem; min-height: 1.3rem; }
+  .impactHeadline { font-size: 0.78rem; line-height: 1.45; }
+  .impactRow { gap: 0.3rem; }
+  .impactChip {
+    min-height: 1.42rem;
+    font-size: 0.52rem;
+    padding: 0.18rem 0.4rem;
+  }
   .bullets  { max-height: none; overflow: visible; }
   .bullet   { font-size: 0.88rem; }
+  .bullets  { gap: 0.65rem; }
+  .bullet   { padding: 0.62rem 0.7rem 0.62rem 1rem; }
+  .bullet::before { top: 0.62rem; bottom: 0.62rem; }
   .stack    { display: none; }
 }
 
 /* ── Tablet (768–1023px) ────────────────────────── */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .header   { padding-top: clamp(1.5rem, 5vh, 3rem); }
-  .company  { font-size: 1.3rem; }
-  .entries  { gap: 1.5rem; }
+@media (min-width: 768px) and (max-width: 1100px) {
+  .header {
+    padding-top: clamp(3.8rem, 7vh, 4.8rem);
+  }
+
+  .timeline {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .snakeLine {
+    display: none;
+  }
+
+  .entries {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1.25rem;
+    align-items: start;
+  }
+
+  .entry {
+    align-items: flex-start;
+  }
+
+  .dot {
+    width: 44px;
+    height: 44px;
+  }
+
+  .company {
+    font-size: 1.3rem;
+  }
 }

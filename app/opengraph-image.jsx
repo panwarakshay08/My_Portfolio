@@ -82,7 +82,7 @@ export default function Image() {
                 textTransform: 'uppercase',
               }}
             >
-              FULL STACK ENGINEER
+              AI FULL STACK ENGINEER
             </span>
           </div>
 

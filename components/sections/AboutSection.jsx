@@ -21,10 +21,49 @@ export default function AboutSection() {
   const photoRef    = useRef(null)
   const contentRef  = useRef(null)
   const socialsRef  = useRef(null)
-  const intervalRef = useRef(null)
+  const rafRef      = useRef(null)
 
   const [typed, setTyped] = useState(0)
   const [done,  setDone]  = useState(false)
+  const [activeSkill, setActiveSkill] = useState(0)
+  const [revealActive, setRevealActive] = useState(false)
+  const [revealPinned, setRevealPinned] = useState(false)
+
+  function moveReveal(e) {
+    const frame = e.currentTarget
+    const rect = frame.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    frame.style.setProperty('--reveal-x', `${x}%`)
+    frame.style.setProperty('--reveal-y', `${y}%`)
+  }
+
+  function handleRevealEnter(e) {
+    moveReveal(e)
+    setRevealActive(true)
+  }
+
+  function handleRevealLeave() {
+    setRevealActive(false)
+  }
+
+  function handleRevealClick(e) {
+    moveReveal(e)
+    setRevealPinned(current => !current)
+  }
+
+  function handleRevealKeyDown(e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    setRevealPinned(current => !current)
+  }
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveSkill(current => (current + 1) % WHO_ITEMS.length)
+    }, 1600)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -36,7 +75,7 @@ export default function AboutSection() {
     let isActive = false
 
     function resetAnim() {
-      clearInterval(intervalRef.current)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
       gsap.killTweensOf(photoRef.current)
       gsap.killTweensOf(contentRef.current)
       const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
@@ -55,28 +94,35 @@ export default function AboutSection() {
       const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
       gsap.to(socialIcons, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1, delay: 0.5 })
 
-      let i = 0
-      intervalRef.current = setInterval(() => {
-        i = Math.min(i + 6, BIO.length)
-        setTyped(i)
-        if (i >= BIO.length) {
-          clearInterval(intervalRef.current)
+      const startedAt = performance.now()
+      const duration = Math.max(1800, BIO.length * 4.8)
+
+      function tick(now) {
+        const progress = Math.min((now - startedAt) / duration, 1)
+        setTyped(Math.round(progress * BIO.length))
+
+        if (progress < 1) {
+          rafRef.current = requestAnimationFrame(tick)
+        } else {
           setDone(true)
         }
-      }, 16)
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
     }
 
     resetAnim()
 
     function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.5
+      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.85
       if (inRange && !isActive)  { isActive = true;  playAnim() }
       if (!inRange && isActive)  { isActive = false; resetAnim() }
     }
 
     scroller.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => {
-      clearInterval(intervalRef.current)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
       scroller.removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -87,7 +133,18 @@ export default function AboutSection() {
       {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoWrap}>
-          <div className={styles.photoFrame} data-about-photo>
+          <div
+            className={`${styles.photoFrame} ${(revealActive || revealPinned) ? styles.photoFrameRevealActive : ''}`}
+            data-about-photo
+            role="button"
+            tabIndex={0}
+            aria-label="Toggle AI systems mode reveal"
+            onPointerEnter={handleRevealEnter}
+            onPointerMove={moveReveal}
+            onPointerLeave={handleRevealLeave}
+            onClick={handleRevealClick}
+            onKeyDown={handleRevealKeyDown}
+          >
             <Image
               src="/assets/hero1-section.png"
               alt={profile.name.full}
@@ -96,6 +153,18 @@ export default function AboutSection() {
               sizes="(min-width: 768px) 30vw, 100vw"
               className={styles.photoImg}
             />
+            <Image
+              src="/assets/mask-hero.png"
+              alt=""
+              fill
+              sizes="(min-width: 768px) 30vw, 100vw"
+              className={styles.suitRevealImg}
+              aria-hidden
+            />
+            <span className={styles.systemScanLayer} aria-hidden />
+            <span className={styles.revealLens} aria-hidden />
+            <span className={styles.revealHint} aria-hidden />
+            <span className={styles.revealBadge} aria-hidden>AI Systems Mode</span>
           </div>
           <p className={styles.signature}>{profile.name.first}</p>
         </div>
@@ -125,10 +194,17 @@ export default function AboutSection() {
         <div className={styles.marqueeWrap}>
           <div className={styles.marqueeTrack}>
             {[...WHO_ITEMS, ...WHO_ITEMS].map((item, i) => (
-              <span key={i} className={styles.marqueeItem}>
+              <button
+                key={`${item}-${i}`}
+                type="button"
+                className={`${styles.marqueeItem} ${i % WHO_ITEMS.length === activeSkill ? styles.marqueeItemActive : ''}`}
+                onClick={() => setActiveSkill(i % WHO_ITEMS.length)}
+                onMouseEnter={() => setActiveSkill(i % WHO_ITEMS.length)}
+                aria-pressed={i % WHO_ITEMS.length === activeSkill}
+              >
                 {item}
                 <span className={styles.marqueeDot}>·</span>
-              </span>
+              </button>
             ))}
           </div>
         </div>

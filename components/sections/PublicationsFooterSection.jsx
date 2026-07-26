@@ -1,12 +1,13 @@
 
 'use client'
 
-import { useEffect, useRef, Fragment } from 'react'
+import { useEffect, useRef, Fragment, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
 import {
-  FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube, FaEnvelope,
+  FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube, FaEnvelope, FaPhoneAlt, FaWhatsapp,
 } from 'react-icons/fa'
 import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
 import profile from '@/data/profile.json'
@@ -30,6 +31,36 @@ const MOBILE_SOCIAL_ICONS = {
 }
 const HERO_SOCIAL_LABELS = ['GitHub', 'LinkedIn', 'Instagram']
 const SOCIALS_WITH_HREF = profile.socials.filter(s => s.href)
+const PHONE_NUMBER = profile.phone.replace(/\D/g, '')
+const INDIA_PHONE_NUMBER = PHONE_NUMBER.length === 10 ? `91${PHONE_NUMBER}` : PHONE_NUMBER
+const INSTAGRAM_PROFILE = profile.socials.find(s => s.label === 'Instagram' && s.href)
+const GITHUB_PROFILE = profile.socials.find(s => s.label === 'GitHub' && s.href)
+const WHATSAPP_MESSAGE = encodeURIComponent('Hi Akshay, I saw your portfolio and would like to connect with you regarding a full-stack engineering opportunity.')
+const WHATSAPP_URL = `https://wa.me/${INDIA_PHONE_NUMBER}?text=${WHATSAPP_MESSAGE}`
+const CONTACT_LINKS = [
+  {
+    label: 'Email',
+    href: `mailto:${profile.email}`,
+    icon: <FaEnvelope size={13} />,
+  },
+  ...(GITHUB_PROFILE ? [{
+    label: 'GitHub',
+    href: GITHUB_PROFILE.href,
+    icon: <FaGithub size={14} />,
+    external: true,
+  }] : []),
+  {
+    label: 'Phone',
+    href: `tel:+${INDIA_PHONE_NUMBER}`,
+    icon: <FaPhoneAlt size={12} />,
+  },
+  ...(INSTAGRAM_PROFILE ? [{
+    label: 'Instagram',
+    href: INSTAGRAM_PROFILE.href,
+    icon: <FaInstagram size={14} />,
+    external: true,
+  }] : []),
+]
 
 const VID_VERT = `
   varying vec2 vUv;
@@ -81,11 +112,13 @@ function easeInOut(t) {
 }
 
 function handleViewProjects() {
-  const scroller = document.querySelector('main')
-  if (scroller) gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: { index: 4 },
+  }))
 }
 
 export default function PublicationsFooterSection() {
+  const [activePub, setActivePub] = useState(null)
   const wrapperRef = useRef(null)
   const stickyRef  = useRef(null)
 
@@ -111,6 +144,17 @@ export default function PublicationsFooterSection() {
   const rightRef        = useRef(null)
   const bigNameRef      = useRef(null)
   const bottomBarRef    = useRef(null)
+
+  useEffect(() => {
+    if (!activePub) return
+
+    function onKeyDown(e) {
+      if (e.key === 'Escape') setActivePub(null)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [activePub])
 
   useEffect(() => {
     const wrapper       = wrapperRef.current
@@ -233,7 +277,7 @@ export default function PublicationsFooterSection() {
 
     // ── Scroll-driven animation ───────────────────────────────
     function onScroll() {
-      const vh   = window.innerHeight
+      const vh   = scroller.clientHeight || sticky.clientHeight || window.innerHeight
       // getBoundingClientRect is reliable regardless of offsetParent chain or navbar
       const dist = -wrapper.getBoundingClientRect().top
 
@@ -351,7 +395,7 @@ export default function PublicationsFooterSection() {
         {/* ── Floating image: starts left, moves to center ── */}
         <div ref={imageWrapRef} className={styles.imageWrap}>
           <Image
-            src="/assets/akshay-footer.jpeg"
+            src="/assets/engineering-snapshot-bg.png"
             alt=""
             fill
             quality={100}
@@ -375,11 +419,10 @@ export default function PublicationsFooterSection() {
 
           <div className={styles.list}>
             {PUBS.map((pub, i) => (
-              <a
+              <button
                 key={pub.id}
-                href={pub.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() => setActivePub(pub)}
                 ref={el => { itemRefs.current[i] = el }}
                 className={styles.item}
               >
@@ -397,39 +440,30 @@ export default function PublicationsFooterSection() {
                     View <FiArrowUpRight size={11} />
                   </span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* ── Image-only interstitial (step 2) ── */}
+        {/* ── Engineering snapshot interstitial (step 2) ── */}
         <div ref={interstitialRef} className={styles.interstitial} aria-hidden>
 
           <div className={styles.interstitialLeft}>
-            <div className={styles.interStat}>
-              <span className={styles.interLabel}>{content.interstitial.availabilityLabel}</span>
-              <span className={styles.interBig}>{profile.location.availability}</span>
-            </div>
-            <div className={styles.interDividerH} />
-            <div className={styles.interStat}>
-              <span className={styles.interLabel}>{content.interstitial.basedInLabel}</span>
-              <span className={styles.interBig}>{profile.location.based}</span>
-            </div>
+            <span className={styles.interLabel}>{content.interstitial.eyebrow}</span>
+            <h2 className={styles.interHeading}>{content.interstitial.heading}</h2>
+            <p className={styles.interSummary}>{content.interstitial.summary}</p>
           </div>
 
           <div className={styles.interstitialRight}>
-            {profile.stats.map((stat, i) => (
-              <Fragment key={stat.label}>
-                {i > 0 && <div className={styles.interDividerV} />}
-                <div className={styles.interNum}>
-                  <span className={styles.interCount}>{stat.value}</span>
-                  <span className={styles.interNumLabel}>
-                    {(content.interstitial.statLabels[i] ?? stat.label).split('\n').map((line, j) => (
-                      <Fragment key={j}>{line}{j === 0 && <br />}</Fragment>
-                    ))}
-                  </span>
+            {content.interstitial.pillars.map((pillar, i) => (
+              <div key={pillar.label} className={styles.interPillar}>
+                <span className={styles.interPillarNum}>0{i + 1}</span>
+                <div>
+                  <span className={styles.interPillarLabel}>{pillar.label}</span>
+                  <strong className={styles.interPillarValue}>{pillar.value}</strong>
+                  <p className={styles.interPillarDetail}>{pillar.detail}</p>
                 </div>
-              </Fragment>
+              </div>
             ))}
           </div>
 
@@ -446,6 +480,19 @@ export default function PublicationsFooterSection() {
         {/* ── Footer content ── */}
         <div ref={footerContentRef} className={styles.footerContent}>
 
+          <div className={styles.agentBg} aria-hidden>
+            <Image
+              src="/assets/contact-ai-agent.png"
+              alt=""
+              fill
+              quality={100}
+              className={styles.agentBgImg}
+              sizes="100vw"
+              priority={false}
+            />
+            <div className={styles.agentBgOverlay} />
+          </div>
+
           {/* ── Mobile: hero-like layout ── */}
           <div className={styles.mobileLayout}>
             <div className={styles.mobileBrand}>
@@ -459,9 +506,24 @@ export default function PublicationsFooterSection() {
             </h2>
             <p className={styles.mobileDesc}>{profile.description}</p>
             <div className={styles.mobileCtas}>
-              <a href={`mailto:${profile.email}`} className={styles.mobileTalkBtn}>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.mobileTalkBtn}>
                 Let&apos;s talk <FiArrowUpRight />
               </a>
+            </div>
+            <div className={styles.mobileContactGrid} aria-label="Contact links">
+              {CONTACT_LINKS.map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={styles.mobileContactLink}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  <span className={styles.mobileContactIcon}>{link.icon}</span>
+                </a>
+              ))}
             </div>
             <div className={styles.mobileSocialRow}>
               {HERO_SOCIAL_LABELS.map((label, i) => {
@@ -520,10 +582,21 @@ export default function PublicationsFooterSection() {
                     </span>
                   ))}
                 </div>
-                <a href={`mailto:${profile.email}`} className={styles.footerMail}>
-                  <FaEnvelope size={12} />
-                  {profile.email}
-                </a>
+                <div className={styles.contactGrid} aria-label="Contact links">
+                  {CONTACT_LINKS.map(link => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className={styles.contactLink}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
+                      aria-label={link.label}
+                      title={link.label}
+                    >
+                      <span className={styles.contactIcon}>{link.icon}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -538,7 +611,7 @@ export default function PublicationsFooterSection() {
                   ))}
                   <span className={styles.ctaAccent}>{content.footer.ctaAccent}</span>
                 </p>
-                <a href={`mailto:${profile.email}`} className={styles.talkBtn}>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.talkBtn}>
                   Let&apos;s talk
                 </a>
               </div>
@@ -573,6 +646,66 @@ export default function PublicationsFooterSection() {
             </div>
           </div>
         </div>
+
+        {activePub && createPortal((
+          <div
+            className={styles.modalLayer}
+            role="presentation"
+            onMouseDown={() => setActivePub(null)}
+            onWheel={e => e.stopPropagation()}
+            onTouchMove={e => e.stopPropagation()}
+          >
+            <section
+              className={styles.modal}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="featured-work-modal-title"
+              onMouseDown={e => e.stopPropagation()}
+              onWheel={e => e.stopPropagation()}
+              onTouchMove={e => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className={styles.modalClose}
+                onClick={() => setActivePub(null)}
+                aria-label="Close featured work details"
+              >
+                ×
+              </button>
+
+              <div className={styles.modalTop}>
+                <span className={styles.modalPlatform}>{activePub.platform}</span>
+                <span className={styles.modalYear}>{activePub.year}</span>
+              </div>
+
+              <h3 id="featured-work-modal-title" className={styles.modalTitle}>{activePub.title}</h3>
+              <p className={styles.modalHeadline}>{activePub.impact.headline}</p>
+
+              <div className={styles.modalMetrics}>
+                {activePub.impact.metrics.map(metric => (
+                  <span key={metric} className={styles.modalMetric}>{metric}</span>
+                ))}
+              </div>
+
+              <div className={styles.modalBody}>
+                <div className={styles.modalFocus}>
+                  <span className={styles.modalSectionLabel}>Engineering Focus</span>
+                  <p>{activePub.impact.focus}</p>
+                  <a href={activePub.link} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>
+                    Live demo <FiArrowUpRight size={14} />
+                  </a>
+                </div>
+
+                <ul className={styles.modalList}>
+                  {activePub.impact.bullets.map(point => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+
+            </section>
+          </div>
+        ), document.body)}
 
       </div>
     </div>

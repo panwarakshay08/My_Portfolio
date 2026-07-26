@@ -43,10 +43,9 @@ export default function HeroSection() {
   const socialRef      = useRef(null)
 
   function handleViewProjects() {
-    const scroller = document.querySelector('main')
-    if (scroller) {
-      gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
-    }
+    window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+      detail: { index: 4 },
+    }))
   }
 
   useEffect(() => {
@@ -100,7 +99,7 @@ export default function HeroSection() {
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>
         <Image
-          src="/assets/about-section1.png" alt={profile.name.full}
+          src="/assets/about-section2.png" alt={profile.name.full}
           fill priority quality={100}
           sizes="(min-width: 768px) 55vw, 100vw"
           className={styles.photoImg}
@@ -194,12 +193,11 @@ export default function HeroSection() {
               <span className={styles.availDot} />
               <span className={styles.availStatus}>{content.hero.availableLabel}</span>
             </div>
-            <p className={styles.locationLine}>Based in {profile.location.based}</p>
+            <p className={styles.locationLine}>Currently in {profile.location.based}</p>
             <p className={styles.locationLine}>Available {profile.location.availability}</p>
           </div>
         )}
       </div>
-
     </section>
   )
 }

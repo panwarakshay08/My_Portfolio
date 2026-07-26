@@ -6,18 +6,18 @@
   },
   "email": "panwarakshay08@gmail.com",
   "phone": "9719357960",
-  "tagline": "Full Stack Engineer | React.js | Node.js | TypeScript | Microservices | REST APIs",
-  "description": "Full Stack Engineer with 5+ years of experience building intuitive React/Next.js interfaces, RESTful APIs, microservices, and scalable Node.js systems.",
+  "tagline": "Full Stack Engineer | Java | React.js | Node.js | TypeScript | AI-Assisted Development",
+  "description": "Full Stack Engineer with 5+ years of experience building React/Next.js interfaces, Java and Node.js services, RESTful APIs, and AI-assisted developer workflows.",
   "roles": {
-    "short": "Full Stack Engineer",
-    "detailed": "Full Stack Engineer | React.js | Node.js | TypeScript | Java"
+    "short": "AI Full Stack Engineer",
+    "detailed": "AI Full Stack Engineer | React.js | Node.js | TypeScript | Java"
   },
   "location": {
     "based": "Pune, India",
     "availability": "Open to Remote / Relocate"
   },
   "available": true,
-  "bio": "Full Stack Engineer with 5+ years of experience and strong frontend expertise in building intuitive, high-performance user interfaces using React.js, Next.js, and TypeScript, combined with solid backend experience in designing RESTful APIs, microservices, and scalable systems using Node.js and Express.js. Proven track record of delivering end-to-end features, from responsive, accessible UIs to production-grade backends with database optimization, in fast-paced Agile/Scrum environments across enterprise and consumer-facing products.",
+  "bio": "AI Full Stack Engineer with 5+ years of experience building intuitive, high-performance user interfaces using React.js, Next.js, and TypeScript, combined with backend experience in Java, Spring Boot, Node.js, Express.js, REST APIs, microservices, and scalable systems. AI enthusiast who actively uses modern AI coding agents and assistants such as ChatGPT, Claude AI, GitHub Copilot, Cursor, Gemini, and Codex to accelerate prototyping, debugging, documentation, test planning, and developer productivity while keeping engineering judgment, code quality, and maintainability at the center.",
   "stats": [
     { "value": "5+", "label": "Years Experience" },
     { "value": "50K+", "label": "SKU Records" },
@@ -34,6 +34,7 @@
     "Zustand",
     "Tailwind CSS",
     "Material UI",
+    "Zenith UI",
     "Styled UI",
     "Node.js",
     "Express.js",
@@ -68,6 +69,15 @@
     "CI/CD",
     "AWS",
     "Linux",
+    "AI-Assisted Development",
+    "Prompt Engineering",
+    "AI Coding Agents",
+    "ChatGPT",
+    "Claude AI",
+    "GitHub Copilot",
+    "Cursor",
+    "Gemini",
+    "Codex",
     "Advanced Excel",
     "Power BI",
     "Microsoft Office",
@@ -84,34 +94,40 @@
       "location": "Pune",
       "period": "July 2024",
       "periodEnd": "Present",
+      "scope": "Enterprise Pricing",
+      "impactHeadline": "Pricing intelligence for global B2B technology distribution",
+      "impact": ["50K+ SKUs", "15+ API integrations", "Multi-region workflows"],
       "bullets": [
-        "Architected a multi-region pricing dashboard in React, TypeScript, and Next.js SSR for business users managing 50K+ SKU records with server-side pagination and real-time filtering.",
-        "Built and maintained a shared Storybook design system with data grids, form controls, search bars, modals, and date pickers adopted across 3+ product modules.",
-        "Reduced UI re-render cycles by 30% using memo, useMemo, useCallback, react-window virtualization, and normalized state for large datasets.",
-        "Improved Core Web Vitals by reducing LCP by 40% and keeping CLS near zero through code splitting, lazy loading, font optimization, and critical CSS extraction.",
-        "Integrated 15+ RESTful APIs with React Query, centralized error handling, retry logic, caching, and loading-state management."
+        "Own Java Full Stack delivery for the Global Price Engine platform, building scalable pricing workflows across Spring Boot services and React/Next.js user experiences.",
+        "Designed RESTful APIs and domain models for pricing rules, SKU operations, discounts, tax calculations, and multi-region configuration with clean contracts and predictable failure handling.",
+        "Built high-throughput React and TypeScript dashboards for 50K+ SKU records with server-side pagination, real-time filtering, bulk actions, validation, and role-aware workflows.",
+        "Partnered with product, backend, and QA teams to define Swagger/OpenAPI contracts, improve integration quality, and convert ambiguous pricing requirements into reliable shipped features.",
+        "Improved reliability and performance through SQL/query optimization, API response tuning, React Query caching, code splitting, lazy loading, and render-cycle reduction."
       ],
-      "desc": "Enterprise pricing platform development for global pricing workflows, reusable UI systems, API integration, and frontend performance.",
-      "tech": ["React.js", "Next.js", "TypeScript", "Material UI", "React Query", "Storybook", "Cypress", "REST APIs", "Swagger/OpenAPI"]
+      "desc": "Java Full Stack Engineer driving enterprise pricing systems at scale, combining Spring Boot API design, database-backed business workflows, React/Next.js dashboards, secure access patterns, and performance-focused engineering for high-volume SKU operations.",
+      "tech": ["Java", "Spring Boot", "REST APIs", "React.js", "Next.js", "TypeScript", "Material UI", "Zenith UI", "React Query", "PostgreSQL", "Swagger/OpenAPI"]
     },
     {
       "id": 2,
-      "role": "Full Stack Developer",
+      "role": "Full Stack Engineer",
       "company": "Webologix",
       "companyShort": "WEBOLOGIX",
       "type": "Full-time",
       "location": "Noida",
       "period": "August 2022",
       "periodEnd": "June 2024",
+      "scope": "Commerce Platform",
+      "impactHeadline": "Production commerce experiences built for discovery and conversion",
+      "impact": ["10K+ active users", "35% faster pages", "40% less duplication"],
       "bullets": [
-        "Led frontend development for Salt Attire, building responsive product listing, collection, and sale pages for high-traffic campaigns with 15K+ monthly visitors.",
-        "Developed reusable product filters, sorting, pagination, and dynamic pricing components, reducing frontend duplication by 40%.",
-        "Reduced page load time by around 35% through lazy loading, WebP/srcset image optimization, code splitting, and efficient Context API state management.",
-        "Built RESTful APIs with Node.js and Express for product catalog, inventory status, and promotional discounts.",
-        "Implemented JWT authentication, secure session management, bcrypt password hashing, and CSRF protection."
+        "Led end-to-end engineering for production web applications, translating product goals into responsive interfaces, REST APIs, reusable components, and deployment-ready features.",
+        "Built the Salt Attire e-commerce experience across product listing, collection, sale, filtering, sorting, pagination, and dynamic pricing workflows for high-traffic campaigns.",
+        "Reduced frontend duplication by 40% through composable UI patterns and reusable commerce components with clean state, loading, and empty-state behavior.",
+        "Improved page performance by around 35% using route-level code splitting, lazy loading, WebP/srcset image strategy, caching, and efficient Context API state management.",
+        "Developed Node.js and Express APIs for catalog, inventory, promotions, and authentication with JWT, bcrypt password hashing, and CSRF-aware session handling."
       ],
-      "desc": "End-to-end delivery of production React and Node.js applications serving 10K+ active users.",
-      "tech": ["React.js", "Next.js", "JavaScript", "Node.js", "Express.js", "REST APIs", "JWT", "Docker", "JIRA"]
+      "desc": "Full Stack Engineer delivering production-grade React and Node.js applications with strong ownership across frontend architecture, API design, performance optimization, secure authentication, reusable component systems, and Agile product delivery for 10K+ active users.",
+      "tech": ["React.js", "Next.js", "JavaScript", "Node.js", "Express.js", "REST APIs", "JWT", "JIRA"]
     },
     {
       "id": 3,
@@ -122,25 +138,31 @@
       "location": "Noida",
       "period": "March 2021",
       "periodEnd": "August 2022",
+      "scope": "React UI Systems",
+      "impactHeadline": "Accessible React interfaces with measurable release quality gains",
+      "impact": ["5K+ daily users", "30% render improvement", "25% fewer regressions"],
       "bullets": [
-        "Created responsive React.js, HTML5, and CSS3 applications across desktop, tablet, and mobile breakpoints for 5K+ daily users.",
-        "Improved UI rendering performance by 30% through component optimization, React.lazy, Suspense, and memoization.",
-        "Integrated 10+ REST APIs with error boundaries, loading states, retry logic, Axios, and custom React hooks.",
-        "Translated Figma mockups into pixel-perfect, WCAG-accessible interfaces in close collaboration with UI/UX designers.",
-        "Wrote Jest and React Testing Library coverage for critical user flows, reducing regression bugs by 25%."
+        "Built responsive, accessible React interfaces across desktop, tablet, and mobile experiences, serving 5K+ daily users with consistent cross-browser behavior.",
+        "Improved rendering performance by 30% through component decomposition, React.lazy, Suspense, memoization, and elimination of unnecessary re-renders.",
+        "Integrated 10+ REST APIs using Axios and custom hooks with resilient loading states, error boundaries, retry paths, and predictable async data flows.",
+        "Converted Figma designs into production-ready UI with strong attention to spacing, responsiveness, accessibility, and maintainable CSS architecture.",
+        "Raised release quality by adding Jest and React Testing Library coverage for critical flows, helping reduce regression defects by 25%."
       ],
-      "desc": "Frontend engineering focused on responsive interfaces, API integration, accessibility, performance, and test coverage.",
+      "desc": "Frontend Engineer focused on high-quality React delivery, translating design systems into accessible production interfaces, integrating APIs with resilient client-side patterns, improving render performance, and strengthening release confidence through targeted automated testing.",
       "tech": ["React.js", "JavaScript", "HTML5", "CSS3", "Axios", "Jest", "React Testing Library", "Figma"]
     },
     {
       "id": 4,
-      "role": "Business Operations Associate",
+      "role": "Business Associate",
       "company": "Capgemini",
       "companyShort": "CAPGEMINI",
       "type": "Full-time",
       "location": "India",
       "period": "Earlier Experience",
       "periodEnd": "",
+      "scope": "Operations",
+      "impactHeadline": "Operational reporting and document workflows with quality discipline",
+      "impact": ["Power BI reporting", "Advanced Excel workflows", "Quality checks", "Advanced MS Office"],
       "bullets": [
         "Handled document operations, reporting, and formatting workflows using Advanced Excel, Power BI, and Microsoft Office tools.",
         "Created and maintained structured reports, trackers, and dashboards to support business process visibility and operational accuracy.",
@@ -157,7 +179,7 @@
       "title": "Global Price Engine - Enterprise Pricing Dashboard",
       "subtitle": "Enterprise Pricing UI",
       "type": "Product",
-      "link": "",
+      "link": "https://in.ingrammicro.com/cep/app/home",
       "image": "/assets/ingram-platform-app.png",
       "tech": ["React.js", "Next.js", "TypeScript", "Material UI", "React Query", "Storybook", "Cypress", "REST APIs"],
       "desc": "Built a rule-based pricing engine UI enabling business teams to configure global pricing strategies across regions and currencies, with filtering, sorting, column customization, CSV export, virtualized rendering, optimistic UI updates, and SWR-style caching for 50K+ records."
@@ -177,7 +199,7 @@
       "title": "DFIN Editor - SEC Filing Document Platform",
       "subtitle": "Collaborative Document Editor",
       "type": "Enterprise Tool",
-      "link": "",
+      "link": "https://www.dfinsolutions.com/",
       "image": "/assets/aptara-editor-tool.png",
       "tech": ["Document Editing", "Real-Time Collaboration", "SEC Filings", "Formatting Workflows", "Multi-User Platform"],
       "desc": "Worked on DFIN Editor, a collaborative platform for formatting US SEC filing documents where multiple users can work simultaneously, edit structured content, apply document formatting rules, and save updates in real time for live document workflows."
@@ -191,12 +213,112 @@
       "period": "2015 - 2018"
     }
   ],
+  "educationProfile": {
+    "eyebrow": "Academic foundation",
+    "heading": "Built on computer science, sharpened by production engineering.",
+    "summary": "A strong CS base combined with continuous learning across full-stack systems, AI-assisted development, and product engineering practices.",
+    "focus": [
+      "Computer Science Fundamentals",
+      "Java Full Stack Engineering",
+      "AI-Assisted Development",
+      "System Design Mindset"
+    ]
+  },
   "certifications": [
     "Full Stack Web Development - Career Dose & Vistara"
   ],
-  "publications": [],
+  "freelance": {
+    "eyebrow": "Freelance proof",
+    "heading": "Freelance builds with client-ready outcomes.",
+    "summary": "Independent work focused on clean interfaces, responsive implementation, fast iteration, and practical business results.",
+    "stats": [
+      { "value": "3+", "label": "Build Types" },
+      { "value": "Fast", "label": "Iteration Cycles" },
+      { "value": "Full Stack", "label": "Delivery" }
+    ],
+    "work": [
+      {
+        "title": "Portfolio & Brand Websites",
+        "type": "Frontend Build",
+        "delivered": ["Responsive UI", "SEO-ready pages", "Performance polish"],
+        "result": "Helped clients present a sharper online identity with fast-loading, mobile-first pages built for recruiter, customer, and lead discovery.",
+        "feedback": "Clear communication, polished UI execution, and fast iteration made the final website feel premium and easy to use."
+      },
+      {
+        "title": "Commerce Experiences",
+        "type": "Product UI",
+        "delivered": ["Product listing flows", "Filters & sorting", "Campaign pages"],
+        "result": "Built commerce-ready interfaces that made product discovery smoother, improved mobile browsing, and reduced repeated frontend work.",
+        "feedback": "The delivered pages felt clean, responsive, and ready for real customers without unnecessary complexity."
+      },
+      {
+        "title": "Dashboards & Internal Tools",
+        "type": "Full Stack Tooling",
+        "delivered": ["Admin workflows", "REST API integration", "Data tables"],
+        "result": "Created practical dashboards and workflow screens that made business operations easier to track, review, and update.",
+        "feedback": "The work converted unclear requirements into usable screens with reliable flows and clear edge-state handling."
+      }
+    ]
+  },
+  "publications": [
+    {
+      "id": 1,
+      "title": "Scaled Enterprise Pricing Workflows",
+      "platform": "Ingram Micro Xvantage",
+      "year": "2026",
+      "link": "https://in.ingrammicro.com/cep/app/home",
+      "desc": "Engineered Java Spring Boot APIs and React/Next.js dashboards for pricing operations across 50K+ SKU records, improving workflow reliability, API clarity, filtering speed, and business-user productivity for multi-region pricing teams.",
+      "impact": {
+        "headline": "Built scalable Java + React pricing workflows for high-volume enterprise SKU operations.",
+        "bullets": [
+          "Designed Spring Boot REST contracts for pricing rules, SKU operations, validation, and predictable error handling.",
+          "Built React/Next.js dashboards for 50K+ SKU records with server-side pagination, filtering, and bulk actions.",
+          "Improved reliability through OpenAPI contracts, query optimization, React Query caching, and cleaner role-based flows."
+        ],
+        "metrics": ["50K+ SKU records", "15+ API integrations", "Multi-region pricing", "Java + React ownership"],
+        "focus": "Scalability, reliability, API design, data-heavy UX, performance"
+      }
+    },
+    {
+      "id": 2,
+      "title": "High-Performance Commerce Platform",
+      "platform": "Salt Attire",
+      "year": "2024",
+      "link": "https://saltattire.com",
+      "desc": "Delivered production e-commerce experiences with reusable product discovery components, optimized rendering, SEO-ready pages, Node.js APIs, and responsive UX patterns that supported campaigns, conversion flows, and 10K+ active users.",
+      "impact": {
+        "headline": "Delivered fast, reusable commerce experiences for product discovery and campaign traffic.",
+        "bullets": [
+          "Led listing, collection, sale, filtering, sorting, pagination, and dynamic pricing workflows.",
+          "Reduced frontend duplication by 40% with reusable commerce components and cleaner state patterns.",
+          "Improved load performance by around 35% using lazy loading, image optimization, code splitting, and Node.js APIs."
+        ],
+        "metrics": ["10K+ active users", "15K+ monthly visitors", "40% less duplication", "35% faster pages"],
+        "focus": "Frontend architecture, commerce UX, performance, SEO, API integration"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Collaborative DFIN Editor",
+      "platform": "DFIN Editor",
+      "year": "2022",
+      "link": "https://www.dfinsolutions.com/",
+      "desc": "Contributed to enterprise document-editing workflows for SEC filing operations, supporting structured formatting, simultaneous multi-user collaboration, real-time save behavior, quality controls, and precision-focused financial document delivery.",
+      "impact": {
+        "headline": "Supported collaborative SEC filing workflows with precision formatting and real-time editing behavior.",
+        "bullets": [
+          "Worked on structured formatting flows for US SEC filing and financial document preparation.",
+          "Supported multi-user editing patterns with live document updates and review-friendly workflows.",
+          "Focused on formatting accuracy, quality checks, and consistency across complex document sections."
+        ],
+        "metrics": ["SEC filing workflows", "Multi-user editing", "Real-time save behavior", "Quality-focused delivery"],
+        "focus": "Collaborative editing, document systems, precision UX, enterprise workflows"
+      }
+    }
+  ],
   "socials": [
+    { "label": "Instagram", "href": "https://www.instagram.com/akshaypanwar_18/" },
     { "label": "LinkedIn", "href": "" },
-    { "label": "GitHub", "href": "" }
+    { "label": "GitHub", "href": "https://github.com/panwarakshay08" }
   ]
 }

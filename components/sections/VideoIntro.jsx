@@ -10,8 +10,9 @@ import styles from '@/styles/sections/VideoIntro.module.css'
 const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), { ssr: false })
 
 function scrollNext() {
-  const main = document.querySelector('main')
-  if (main) main.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: { index: 1 },
+  }))
 }
 
 export default function VideoIntro() {
@@ -127,7 +128,7 @@ export default function VideoIntro() {
 
       {/* 1 - Blurred ambient background */}
       <video
-        src="/assets/about_me.mp4"
+        src="/assets/akshay-intro.mp4"
         autoPlay muted playsInline
         aria-hidden="true"
         className={styles.bgVideo}
@@ -137,7 +138,7 @@ export default function VideoIntro() {
       <video
         ref={videoRef}
         data-testid="intro-video"
-        src="/assets/about_me.mp4"
+        src="/assets/akshay-intro.mp4"
         muted playsInline
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

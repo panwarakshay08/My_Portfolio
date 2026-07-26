@@ -12,14 +12,23 @@ import profile from '@/data/profile.json'
 import styles from '@/styles/ui/Navbar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
-// idx matches snap position in page.js (0=video,1=hero,2=about,3-4=projects,5=work-exp,6=publications,7=footer)
+const PROJECT_SLIDES = profile.projects.length
+const EDUCATION_START = 3
+const WORK_START = EDUCATION_START + 1
+const EXPERIENCE_START = WORK_START + PROJECT_SLIDES
+const FREELANCE_START = EXPERIENCE_START + 1
+const IMPACT_START = FREELANCE_START + 1
+const CONTACT_START = IMPACT_START + 2
+
 const NAV_ITEMS = [
-  { label: 'Home',         idx: 0 },
-  { label: 'About',        idx: 2 },
-  { label: 'Work',         idx: 3 },
-  { label: 'Experience',   idx: 5 },
-  { label: 'Impact',       idx: 6 },
-  { label: 'Contact',      idx: 7 },
+  { label: 'Home',         target: 'home',       idx: 0 },
+  { label: 'About',        target: 'about',      idx: 2 },
+  { label: 'Education',    target: 'education',  idx: EDUCATION_START },
+  { label: 'Work',         target: 'work',       idx: WORK_START },
+  { label: 'Experience',   target: 'experience', idx: EXPERIENCE_START },
+  { label: 'Freelance',    target: 'freelance',  idx: FREELANCE_START },
+  { label: 'Impact',       target: 'impact',     idx: IMPACT_START },
+  { label: 'Contact',      target: 'impact',     idx: CONTACT_START, step: 2 },
 ]
 
 const INDIA_TIME_FORMATTER = new Intl.DateTimeFormat('en-IN', {
@@ -32,6 +41,15 @@ const INDIA_TIME_FORMATTER = new Intl.DateTimeFormat('en-IN', {
 
 function getIndiaTime() {
   return INDIA_TIME_FORMATTER.format(new Date()).toUpperCase()
+}
+
+function scrollToNavItem(item) {
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: {
+      index: item.idx,
+      withTransition: true,
+    },
+  }))
 }
 
 export default function Navbar() {
@@ -102,21 +120,13 @@ export default function Navbar() {
 
         <NavigationMenu className={styles.navMenu}>
           <NavigationMenuList className="flex gap-6">
-            {NAV_ITEMS.map(({ label, idx }) => (
-              <NavigationMenuItem key={label}>
+            {NAV_ITEMS.map(item => (
+              <NavigationMenuItem key={item.label}>
                 <NavigationMenuLink
                   className={styles.navLink}
-                  onClick={() => {
-                    const scroller = document.querySelector('main')
-                    if (scroller) gsap.to(scroller, {
-                      scrollTop: idx * window.innerHeight,
-                      duration: 1.0,
-                      ease: 'power3.inOut',
-                    })
-                  }}
-                  style={{ cursor: 'pointer' }}
+                  onClick={() => scrollToNavItem(item)}
                 >
-                  {label}
+                  {item.label}
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
@@ -141,21 +151,16 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          {NAV_ITEMS.map(({ label, idx }) => (
+          {NAV_ITEMS.map(item => (
             <button
-              key={label}
+              key={item.label}
               className={styles.mobileNavLink}
               onClick={() => {
-                const scroller = document.querySelector('main')
-                if (scroller) gsap.to(scroller, {
-                  scrollTop: idx * window.innerHeight,
-                  duration: 1.0,
-                  ease: 'power3.inOut',
-                })
+                scrollToNavItem(item)
                 setMenuOpen(false)
               }}
             >
-              {label}
+              {item.label}
             </button>
           ))}
           <a
