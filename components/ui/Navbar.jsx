@@ -43,20 +43,13 @@ function getIndiaTime() {
   return INDIA_TIME_FORMATTER.format(new Date()).toUpperCase()
 }
 
-function getNavScrollTop({ target, idx, step = 0 }) {
-  const section = document.querySelector(`[data-nav-section="${target}"]`)
-  if (section) return section.offsetTop + (step * window.innerHeight)
-  return idx * window.innerHeight
-}
-
 function scrollToNavItem(item) {
-  const scroller = document.querySelector('main')
-  if (!scroller) return
-  gsap.to(scroller, {
-    scrollTop: getNavScrollTop(item),
-    duration: 1.0,
-    ease: 'power3.inOut',
-  })
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: {
+      index: item.idx,
+      withTransition: true,
+    },
+  }))
 }
 
 export default function Navbar() {

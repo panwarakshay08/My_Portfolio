@@ -43,15 +43,9 @@ export default function HeroSection() {
   const socialRef      = useRef(null)
 
   function handleViewProjects() {
-    const scroller = document.querySelector('main')
-    const workSection = document.querySelector('[data-nav-section="work"]')
-    if (scroller) {
-      gsap.to(scroller, {
-        scrollTop: workSection?.offsetTop ?? 4 * window.innerHeight,
-        duration: 1.0,
-        ease: 'power3.inOut',
-      })
-    }
+    window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+      detail: { index: 4 },
+    }))
   }
 
   useEffect(() => {

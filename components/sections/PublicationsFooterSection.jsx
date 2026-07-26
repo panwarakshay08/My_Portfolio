@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef, Fragment, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
@@ -111,8 +112,9 @@ function easeInOut(t) {
 }
 
 function handleViewProjects() {
-  const scroller = document.querySelector('main')
-  if (scroller) gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: { index: 4 },
+  }))
 }
 
 export default function PublicationsFooterSection() {
@@ -275,7 +277,7 @@ export default function PublicationsFooterSection() {
 
     // ── Scroll-driven animation ───────────────────────────────
     function onScroll() {
-      const vh   = window.innerHeight
+      const vh   = scroller.clientHeight || sticky.clientHeight || window.innerHeight
       // getBoundingClientRect is reliable regardless of offsetParent chain or navbar
       const dist = -wrapper.getBoundingClientRect().top
 
@@ -645,7 +647,7 @@ export default function PublicationsFooterSection() {
           </div>
         </div>
 
-        {activePub && (
+        {activePub && createPortal((
           <div
             className={styles.modalLayer}
             role="presentation"
@@ -703,7 +705,7 @@ export default function PublicationsFooterSection() {
 
             </section>
           </div>
-        )}
+        ), document.body)}
 
       </div>
     </div>

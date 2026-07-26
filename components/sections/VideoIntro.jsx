@@ -10,8 +10,9 @@ import styles from '@/styles/sections/VideoIntro.module.css'
 const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), { ssr: false })
 
 function scrollNext() {
-  const main = document.querySelector('main')
-  if (main) main.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+  window.dispatchEvent(new CustomEvent('portfolio:navigate', {
+    detail: { index: 1 },
+  }))
 }
 
 export default function VideoIntro() {
